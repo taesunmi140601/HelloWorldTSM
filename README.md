@@ -26,3 +26,5 @@
 - OAuth 2.0 : API 인증 및 권한 관리
 
 ## 📌 담당 기능
+#### BootStrap templeate 적용
+- Tiles를 활용하여 공통요소 모듈화
