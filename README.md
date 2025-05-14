@@ -33,6 +33,7 @@
   - 📄 서비스제공자 화면 공통 include 파일 관리 [🔗 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/WEB-INF/views/sepgruppe/includee)
   - 📑 서비스제공자 전용 레이아웃 JSP 관리 [🔗 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/WEB-INF/views/sepgruppe/layouts)
 
+- 📦 첨부파일 업&다운로드 공통 기능 개발
 
 
 
