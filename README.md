@@ -72,6 +72,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 
 }
+</details>
 ### 📂 관련 소스 경로
 - 📄 📦 채팅 기능 컨트롤러 ([ChatController](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/java/kr/or/ddit/works/chat/controller))
 - 📄 🛠️ 채팅 서비스 로직 ([ChatService](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/java/kr/or/ddit/works/chat/service))
@@ -79,8 +80,5 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 - 📄 🗂️ 채팅 MyBatis 매퍼 ([ChatMapper.xml](https://github.com/taesunmi140601/HelloWorldTSM/blob/main/SEPgruppe/src/main/java/kr/or/ddit/works/mybatis/mappers/ChatMapper.java))
 - 📄 🖥️ 채팅 화면 JSP ([chat](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/WEB-INF/views/groupware/chat))
 - 📄 📜 채팅 JS 파일 ([chat](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/resources/groupware/js/chat))
-
-</details>
-
 
 
