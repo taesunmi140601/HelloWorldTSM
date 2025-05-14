@@ -73,17 +73,5 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 }
 </details>
-📂 관련 소스 경로
-📄 📦 채팅 기능 컨트롤러 (ChatController)
-
-📄 🛠️ 채팅 서비스 로직 (ChatService)
-
-📄 📑 채팅 데이터 VO (ChatVO)
-
-📄 🗂️ 채팅 MyBatis 매퍼 (ChatMapper.xml)
-
-📄 🖥️ 채팅 화면 JSP (chat)
-
-📄 📜 채팅 JS 파일 (chat)
 
 
