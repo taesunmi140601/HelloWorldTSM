@@ -26,7 +26,14 @@
 - OAuth 2.0 : API 인증 및 권한 관리
 
 ## 📌 담당 기능
-#### BootStrap templeate 적용
-- 그룹웨어 페이지 레이아웃 분리 : <a href="https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/WEB-INF/tiles" >상세보기</a>
-- Tiles를 활용하여 공통요소 모듈화 : <a href="https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/WEB-INF/tiles" >상세보기</a>
+#### BootStrap templeate 적용 및 페이지 레이아웃 분리
+- <a href="https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/WEB-INF/tiles" >그룹웨어 공통 레이아웃 및 템플릿 구성 (Tiles 설정)</a>
+- <a href="https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/WEB-INF/views/groupware/includee" >그룹웨어 화면 공통 include 파일 관리</a>
+- <a href="https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/WEB-INF/views/groupware/layouts" >그룹웨어 전용 레이아웃 JSP 관리</a>
+- <a href="https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/WEB-INF/views/sepgruppe/includee" >서비스제공자 화면 공통 include 파일 관리</a>
+- <a href="https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/WEB-INF/views/sepgruppe/layouts" >서비스제공자 전용 레이아웃 JSP 관리</a>
+
+
+
+
 
