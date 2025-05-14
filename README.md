@@ -36,7 +36,13 @@
 - 📦 첨부파일 업로드 & 다운로드 공통 모듈 개발 [🔗 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/java/kr/or/ddit/works/attachFile)
 
 - 📦 채팅 기능 개발
-  - 그룹웨어 내에서 실시간 소통을 위한 WebSocket 기반 채팅 시스템을 구현하였습니다.
+  - 🖥️ 채팅 컨트롤러 구현 [🔗 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/java/kr/or/ddit/works/chat/controller)
+  - ⚙️ 채팅 서비스 로직 구현 [🔗 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/java/kr/or/ddit/works/chat/service)
+  - 🗂️ 채팅 데이터 모델 (VO) 설정 [🔗 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/java/kr/or/ddit/works/chat/vo)
+  - 📝 MyBatis 채팅 관련 매퍼 설정 [🔗 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/blob/main/SEPgruppe/src/main/java/kr/or/ddit/works/mybatis/mappers/ChatMapper.java)
+  - 📑 그룹웨어 채팅 화면 JSP 파일 [🔗 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/WEB-INF/views/groupware/chat)
+  - 💬 채팅 관련 JavaScript 파일 [🔗 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/webapp/resources/groupware/js/chat)
+
 <details> 
   <summary>WebSocketConfig 설정</summary>
 
