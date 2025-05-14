@@ -72,7 +72,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 
 }
-</details> ```
+</details>
 
 
 
