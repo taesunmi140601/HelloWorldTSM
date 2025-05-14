@@ -1,0 +1,139 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 7.     	SJH            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+/* 전체 배경 및 폰트 */
+body {
+  background-color: #f1f3f5;
+  font-family: 'Segoe UI', 'Noto Sans KR', sans-serif;
+  color: #212529;
+  padding: 2rem;
+}
+
+/* 제목 스타일 */
+h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #212529;
+}
+
+/* 테이블 디자인 */
+.table {
+  background-color: #fff;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.06);
+  font-size: 1.05rem;
+}
+
+.table th {
+  width: 30%;
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.table td {
+  background-color: #ffffff;
+  padding: 1rem;
+  color: #212529;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+.table th,
+.table td {
+  white-space: nowrap;        /* 줄바꿈 방지 */
+  overflow: hidden;           /* 넘치는 건 숨김 */
+  text-overflow: ellipsis;    /* 너무 길면 ... 처리 */
+}
+
+
+/* 버튼 섹션 */
+.text-center {
+  margin-top: 2rem;
+}
+
+.text-center .btn {
+  margin: 0 0.3rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+}
+
+/* 버튼 색상 커스터마이징 */
+.btn-primary {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.btn-primary:hover {
+  background-color: #1e40af;
+  border-color: #1e40af;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #b02a37;
+  border-color: #b02a37;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #5a6268;
+}
+
+/* 모달 스타일 */
+.modal-content {
+  border-radius: 0.75rem;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+.modal-header,
+.modal-footer {
+  background-color: #f8f9fa;
+  border: none;
+}
+
+.modal-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #212529;
+}
+
+/* 입력 폼 */
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #343a40;
+}
+
+.form-control {
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  box-shadow: none;
+}

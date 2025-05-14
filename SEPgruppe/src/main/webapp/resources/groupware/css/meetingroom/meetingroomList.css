@@ -1,0 +1,132 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 7.     	SJH            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+/* 전체 레이아웃 */
+body {
+    background-color: #f8f9fa;
+/*     padding-top: 2rem; */
+    padding-bottom: 2rem;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.meetingroom-wrapper {
+  width: 100%;
+  max-width: 960px; /* 🟦 적당한 너비 제한 */
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05);
+}
+
+lottie-player {
+  width: 100%; 
+  max-width: 800px; 
+  height: auto; 
+  margin: 0 auto;
+}
+
+
+/* 제목 스타일 */
+h2 {
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #343a40;
+    text-align: center;
+}
+
+/* 테이블 */
+.table {
+    background-color: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.075);
+}
+
+.table thead {
+    background-color: #007bff;
+    color: white;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table td a {
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.table td a:hover {
+    text-decoration: underline;
+}
+
+/* 버튼 */
+.btn-primary, .btn-secondary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: 0.2s all ease;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* 모달 */
+.modal-content {
+    border-radius: 0.75rem;
+    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    background-color: #f1f3f5;
+    border-bottom: none;
+}
+
+.modal-title {
+    font-weight: 600;
+    color: #343a40;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+/* form 스타일 */
+.form-group label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.form-control {
+    border-radius: 0.5rem;
+}
+
+
+.roomContainer {
+	padding: 40px;
+}
+
+.meetingroom-header img.room {
+    width: 100%; /* 부모 요소의 너비에 맞춤 */
+    height: 100%; /* 부모 요소의 높이에 맞춤 */
+    object-fit: contain; /* 이미지 비율 유지, 요소 내부에 모두 표시 */
+    /* 또는 */
+    object-fit: cover; /* 이미지 비율 유지, 요소 전체를 덮도록 크기 조절 (이미지가 잘릴 수 있음) */
+}

@@ -1,0 +1,139 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 22.     	손현진            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+/*     body { */
+/*       margin: 0; */
+/*       padding: 0; */
+/*       font-family: sans-serif; */
+/*       background-color: #f9f9f9; */
+/*     } */
+.subcontainer {
+	display: flex;
+	max-width: 1200px;
+	margin: 50px auto;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+}
+
+.form-left, .form-right {
+	padding: 30px;
+	flex: 1;
+}
+/* 좌측 컬럼 스타일 */
+.form-left {
+	border-right: 1px solid #ddd;
+}
+
+.form-left h2 {
+	margin-top: 0;
+	font-size: 18px;
+	margin-bottom: 10px;
+	text-align: left;
+}
+
+.form-left .input-group {
+	margin-bottom: 20px;
+}
+
+.form-left label {
+	display: block;
+	margin-bottom: 8px;
+	cursor: pointer;
+}
+
+.form-left input[type="number"] {
+	width: 100%;
+	padding: 10px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.form-left input[type="radio"] {
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.form-left p {
+	margin: 8px 0 4px 0;
+	font-weight: bold;
+}
+
+/* 우측 컬럼 스타일 */
+.form-right h3 {
+	margin-top: 0;
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+
+.price {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.price span {
+	font-size: 14px;
+	color: #777;
+	margin-left: 5px;
+}
+
+.usage p {
+	margin: 5px 0;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.notice {
+	font-size: 12px;
+	color: #555;
+	margin-top: 20px;
+	line-height: 1.4;
+}
+
+button[type="submit"] {
+	display: inline-block;
+	margin-top: 20px;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	background-color: #4e77ff;
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+button[type="submit"]:hover {
+	background-color: #3b5fd1;
+}
+
+.explanation {
+	margin-bottom: 20px;
+	padding: 10px;
+	background-color: #f2f2f2;
+	border-radius: 4px;
+}
+
+.explanation h2 {
+	margin-top: 0;
+	font-weight: bold;
+}
+
+.explanation p {
+	margin: 5px 0 0 0;
+	color: #333;
+}

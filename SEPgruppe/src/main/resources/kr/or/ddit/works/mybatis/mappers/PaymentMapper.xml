@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.PaymentMapper">
+
+<insert id="saveBilling">
+	<selectKey keyProperty="billingKeyId" resultType="long"
+		order="BEFORE">
+		SELECT SEQ_BILLING_KEY_ID.NEXTVAL FROM DUAL
+	</selectKey>
+	INSERT INTO BILLING_KEY (
+		BILLING_KEY_ID
+		, CONTACT_ID
+		, BILLING_KEY
+		, CREATE_AT
+		, UPDATE_AT
+	) VALUES (
+		#{billingKeyId}
+		, #{contactId}
+		, #{billingKey}
+		, SYSDATE
+		, #{updateAt}
+	)
+</insert>
+
+<select id="selectBilling">
+	SELECT
+	    BILLING_KEY_ID
+	  , CONTACT_ID
+	  , BILLING_KEY
+	  , CREATE_AT
+	  , UPDATE_AT
+	FROM
+	    BILLING_KEY
+	WHERE CONTACT_ID = #{contactId}
+</select>
+
+<insert id="insertPayment">
+	INSERT INTO PAYMENTS (
+	    PAYMENT_NO
+	    , SUBSCRIPTION_NO
+	    , CONTACT_ID
+	    , PAYMENT_DATE
+	    , PAYMENT_AMOUNT
+	    , PAYMENT_METHOD
+	    , PAYMENT_STATUS
+	    , AUTO_PAYMENT
+	) VALUES (
+	    #{paymentNo}
+	  , #{subscriptionNo}
+	  , #{contactId}
+	  , #{paymentDate}
+	  , #{paymentAmount}
+	  , #{paymentMethod}
+	  , #{paymentStatus}
+	  , #{autoPayment}
+	)
+</insert>
+<select id="paymentList">
+	 SELECT
+	    PAYMENT_NO
+	  , SUBSCRIPTION_NO
+	  , CONTACT_ID
+	  , TO_CHAR(PAYMENT_DATE, 'YYYY-MM-DD') AS PAYMENT_DATE
+	  , PAYMENT_AMOUNT
+	  , PAYMENT_METHOD
+	  , PAYMENT_STATUS
+	  , AUTO_PAYMENT
+	FROM
+	    PAYMENTS
+</select>
+
+<select id="selectPaymentsBySubscriptionNo" resultType="kr.or.ddit.works.subscription.vo.PaymentsVO">
+    SELECT *
+    FROM PAYMENTS
+    WHERE SUBSCRIPTION_NO = #{subscriptionNo}
+</select>
+
+</mapper>

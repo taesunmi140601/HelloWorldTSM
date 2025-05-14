@@ -1,0 +1,316 @@
+@charset "UTF-8";
+
+.community-wrapper {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.community-left {
+    width: 250px;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    align-self: stretch;
+    height: auto;
+}
+
+.community-right {
+    flex-grow: 1;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.community-item {
+    font-weight: 700;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: normal;
+}
+
+.community-item:hover {
+    background-color: #e8f0ff;
+}
+
+.card, #mainCard {
+    border: none;
+    box-shadow: none;
+    background: none;
+    padding: 0;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.btn-create {
+    margin-bottom: 20px;
+}
+
+.community-left .d-flex {
+    margin-bottom: 10px;
+}
+
+.community-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+}
+
+.nav-tabs {
+    --bs-nav-tabs-border-width: 0;
+    --bs-nav-tabs-border-color: transparent;
+    border-bottom: none;
+}
+
+.nav-tabs .nav-link.active {
+    border-bottom: 2px solid #007bff;
+    color: #007bff;
+}
+
+.nav-tabs .nav-link:hover {
+    border-bottom: 2px solid #0056b3;
+}
+
+.tab-pane {
+    display: none;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.tab-pane.show {
+    display: block;
+}
+
+.community-list {
+    display: none;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul.list-unstyled {
+    padding: 0;
+}
+
+li.d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+i.toggle-communities {
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.btn-outline-primary {
+    border-color: #7490b2;
+    color: #7490b2;
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+.btn-outline-primary:hover {
+    background-color: #7490b2;
+    border-color: #7490b2;
+    color: white;
+}
+
+.community-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.community-header i {
+    font-size: 1.5rem;
+    /* margin-right: 10px; */
+}
+
+#communityName {
+    font-size: 1.25rem;
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+#addBoard {
+    margin-bottom: 30px;
+}
+
+#invite-btn {
+    background-color: transparent;
+    border: 1px solid #007bff; /* blue color for outline */
+    color: #007bff;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    margin-right: 5px;
+}
+
+#invite-btn:hover {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+#leave-btn {
+    background-color: transparent;
+    border: 1px solid #dc3545; /* red color for outline */
+    color: #dc3545;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+#leave-btn:hover {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+#button-container {
+    display: flex; /* 버튼들을 가로로 배치 */
+    justify-content: space-between; /* 버튼 사이에 간격을 두기 */
+}
+
+.notice-title {
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+tr {
+  cursor: pointer;
+}
+.notice-info {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ddd;
+    margin-bottom: 15px;
+}
+
+.notice-content {
+    font-size: 16px;
+    min-height: 300px;
+    border-bottom: 1px dashed #ddd;
+    word-break: break-word; /* 긴 단어도 자동 줄바꿈 */
+    margin-bottom: 15px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.icon-view-count {
+    display: flex;
+    align-items: center; /* 수직 정렬 */
+}
+
+.icon-view-count i {
+    font-size: 20px; /* 아이콘 크기 조정 */
+    margin-right: 10px; /* 아이콘과 조회수 간격 조정 */
+    color: #1E174FAD;
+}
+.icon-view-count span {
+    margin-left: 5px;            /* 첫 번째 span과 아이콘 간의 간격 */
+}
+
+/* 아이콘 1세트와 아이콘 2세트 사이 간격을 조정 */
+.icon-view-count i + span + i {
+    margin-left: 20px;           /* 첫 번째 그룹과 두 번째 그룹 간의 간격 */
+}
+.notice-container {
+    width: 100%;
+    max-width: 1200px; /* 너무 넓어지지 않게 제한 */
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    position: relative;
+}
+
+.bi-arrow-through-heart, .bi-arrow-through-heart-fill {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 50px;
+    color: red;
+    border-radius: 50%;
+    transition: all 0.3s ease; /* 부드러운 전환 효과 */
+    padding: 10px;
+}
+
+.bi-arrow-through-heart {
+    z-index: 1; /* 테두리만 있는 아이콘 */
+    color: red; /* 기본 색상은 투명 */
+    opacity: 1; /* 기본적으로 보이도록 설정 */
+}
+
+.bi-arrow-through-heart-fill {
+    z-index: 2; /* 색이 채워진 아이콘 */
+    color: red; /* 색이 채워진 빨간 하트 */
+    opacity: 0; /* 기본적으로 숨김 (보이지 않음) */
+}
+
+.bi-arrow-through-heart:hover {
+    opacity: 0; /* 테두리만 있는 하트 숨기기 */
+}
+
+.bi-arrow-through-heart-fill:hover {
+    opacity: 1; /* 색이 채워진 하트 보이기 */
+}
+
+.comment-input-container {
+    position: relative;
+}
+
+#submitCommentBtn {
+    position: absolute;
+    margin-top: 20px;
+}
+
+.oval-icon-container {
+    display: inline-flex; /* 아이콘을 중앙에 배치하기 위해 flex 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    width: 40px; /* 타원형의 너비 */
+    height: 20px; /* 타원형의 높이 */
+    border-radius: 15px; /* 타원형 모양을 만들기 위한 반지름 */
+    background-color: #7490b2; /* 배경색 */
+    cursor: pointer; /* 커서 포인터 */
+}
+#organizationPopup.popup {
+  position: absolute;
+  z-index: 9999;
+  display: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  width: 400px;
+  padding: 20px;
+}

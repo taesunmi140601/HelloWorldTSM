@@ -1,0 +1,33 @@
+/**
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 18.     	JYS            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+/* Flex 컨테이너 설정 */
+.d-flex {
+    display: flex;
+    justify-content: flex-start;  /* 두 요소를 왼쪽으로 배치 */
+}
+
+/* 디테일 바 스타일 */
+.detailbar {
+    width: 250px;
+    background-color: #f4f4f4;
+    position: relative;
+    margin-left: 20px; /* 사이드바와 간격 */
+    left: 250px; /* sidebar 옆에 위치 */
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    border-left: 1px solid #ddd;
+    transition: width 0.3s ease-in-out;
+    padding: 20px;
+}

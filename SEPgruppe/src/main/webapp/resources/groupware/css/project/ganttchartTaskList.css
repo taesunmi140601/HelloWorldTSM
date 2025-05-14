@@ -1,0 +1,136 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 7.     	JSW            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+.ganttContainer {
+	padding: 40px;
+}
+
+#gantt svg {
+  font-family: 'Poppins', 'Open Sans', sans-serif !important;
+}
+
+#gantt {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.gantt-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.gantt {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* 오늘 날짜 표시 스타일 */
+.today-highlight {
+  fill: #aef1c6 !important;
+}
+
+/* 배경 격자 스타일 */
+.grid-row, .grid-background {
+  fill: #f9f9f9 !important;
+}
+
+.grid-header {
+  fill: #f9f9f9 !important;
+}
+
+/* 날짜 폰트 */
+.lower-text, .upper-text {
+  fill: #444 !important;
+  font-size: 11px !important;
+}
+
+/* 바 기본 스타일 */
+.bar {
+  fill: rgb(192, 192, 192) !important;
+  stroke: rgb(192, 192, 192)important;
+  stroke-width: 1px !important;
+  rx: 3;
+  ry: 3;
+  filter: none !important;
+}
+
+/* 진행률 바 */
+.bar-progress {
+  fill: lightblue !important;
+  opacity: 1 !important;
+}
+
+/* 바 텍스트 */
+.bar-label {
+   fill: #fff !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+/* 드래그 핸들 */
+.handle {
+  fill: #2b6fe3;
+  cursor: ew-resize;
+}
+
+/* 팝업 */
+.popup-wrapper {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.gantt-popup {
+	position: absolute !important;
+	z-index: 9999;
+  	background: #fff;
+  	border: 1px solid #ddd;
+  	border-radius: 12px;
+  	padding: 16px 20px;
+  	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  	min-width: 220px;
+  	max-width: 300px;
+  	font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  	font-size: 14px;
+  	color: #333;
+  	animation: fadeInPop 0.2s ease-in-out;
+}
+
+.gantt-popup h5 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #2b6cb0;
+  font-weight: 600;
+}
+
+.gantt-popup p {
+  margin: 4px 0;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+@keyframes fadeInPop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

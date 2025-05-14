@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.ScheduleMapper">
+
+	<!-- 일정 목록 전체 조회 -->
+    <select id="selectScheduleList" resultType="ScheduleVO">
+        SELECT
+        	*
+        FROM
+        	SCHEDULE
+    </select>
+
+	<!-- 일정 상세 조회 -->
+    <select id="selectSchedule" parameterType="int" resultType="ScheduleVO">
+        SELECT
+              S.EMP_ID
+            , S.SCHDL_NO
+            , S.SCHDL_NM
+            , S.SCHDL_CN
+            , S.SCHDL_BGNG_YMD
+            , S.SCHDL_END_YMD
+            , S.SCHDL_LOCATION
+            , S.SCHDL_CREATE_DATE
+            , S.SCHDL_STATUS
+            , S.SCHDL_UPDATE_DATE
+            , SA.ATTENDANCE_STATUS
+            , ST.SCHEDULE_TYPE_NM
+        FROM
+        	SCHEDULE S
+        LEFT JOIN (
+            SELECT
+                  SA.SCHDL_NO
+                , SA.EMP_ID
+                , SA.ATTENDANCE_STATUS
+                , ROW_NUMBER() OVER (PARTITION BY SA.SCHDL_NO ORDER BY SA.EMP_ID) AS RN
+            FROM
+            	SCHEDULE_ATTENDEES SA
+        ) SA ON S.SCHDL_NO = SA.SCHDL_NO
+             AND SA.RN = 1
+        LEFT JOIN SCHEDULE_TYPE ST ON S.SCHEDULE_TYPE_NO = ST.SCHEDULE_TYPE_NO
+        WHERE
+        	S.SCHDL_NO = #{schdlNo}
+    </select>
+
+	<!-- 대시보드용 : 이번 달 일정 목록 조회 -->
+    <select id="selectThisMonthSchedules" parameterType="map" resultType="ScheduleVO">
+        SELECT
+              SCHDL_NO
+            , EMP_ID
+            , SCHDL_NM
+            , SCHDL_CN
+            , SCHDL_BGNG_YMD
+            , SCHDL_END_YMD
+            , SCHDL_LOCATION
+            , SCHDL_CREATE_DATE
+            , SCHDL_STATUS
+            , SCHEDULE_TYPE_NO
+            , (
+                SELECT
+                	SCHEDULE_TYPE_NM
+                FROM
+                	SCHEDULE_TYPE ST
+                WHERE
+                	ST.SCHEDULE_TYPE_NO = S.SCHEDULE_TYPE_NO
+              ) AS SCHEDULE_TYPE_NM
+        FROM
+        	SCHEDULE S
+        WHERE
+        	EMP_ID = #{empId}
+          AND
+          	SCHDL_BGNG_YMD BETWEEN #{start} AND #{end}
+    </select>
+
+    <!-- 일정 등록 -->
+    <insert id="insertSchedule">
+        INSERT INTO SCHEDULE (
+              SCHDL_NO
+            , SCHEDULE_TYPE_NO
+            , EMP_ID
+            , SCHDL_NM
+            , SCHDL_CN
+            , SCHDL_BGNG_YMD
+            , SCHDL_END_YMD
+            , SCHDL_LOCATION
+            , SCHDL_CREATE_DATE
+            , SCHDL_STATUS
+            , PROJECT_NO
+        ) VALUES (
+              SCHDL_SEQ.NEXTVAL
+            , #{scheduleTypeNo}
+            , #{empId, jdbcType=VARCHAR}
+            , #{schdlNm, jdbcType=VARCHAR}
+            , #{schdlCn, jdbcType=VARCHAR}
+            , #{schdlBgngYmd, jdbcType=DATE}
+            , #{schdlEndYmd, jdbcType=DATE}
+            , #{schdlLocation, jdbcType=VARCHAR}
+            , #{schdlCreateDate, jdbcType=DATE}
+            , #{schdlStatus, jdbcType=VARCHAR}
+            , #{projectNo}
+        )
+    </insert>
+
+    <!-- 일정 수정 -->
+    <update id="updateSchedule">
+        UPDATE
+        	SCHEDULE
+        SET
+              SCHDL_NO           = #{schdlNo, jdbcType=NUMERIC}
+            , SCHEDULE_TYPE_NO   = #{scheduleTypeNo, jdbcType=NUMERIC}
+            , EMP_ID             = #{empId, jdbcType=VARCHAR}
+            , SCHDL_NM           = #{schdlNm, jdbcType=VARCHAR}
+            , SCHDL_CN           = #{schdlCn, jdbcType=VARCHAR}
+            , SCHDL_BGNG_YMD     = #{schdlBgngYmd, jdbcType=DATE}
+            , SCHDL_END_YMD      = #{schdlEndYmd, jdbcType=DATE}
+            , SCHDL_LOCATION     = #{schdlLocation, jdbcType=VARCHAR}
+            , SCHDL_CREATE_DATE  = #{schdlCreateDate, jdbcType=DATE}
+            , NOTIFY_TIME        = #{notifyTime, jdbcType=DATE}
+            , SCHDL_STATUS       = #{schdlStatus, jdbcType=VARCHAR}
+            , SCHDL_UPDATE_DATE  = #{schdlUpdateDate, jdbcType=DATE}
+        WHERE
+        	SCHDL_NO 			 = #{schdlNo}
+    </update>
+
+    <!-- 일정 단건 삭제 -->
+    <delete id="deleteSchedule">
+        DELETE
+        FROM
+        	SCHEDULE
+        WHERE
+        	SCHDL_NO = #{schdlNo}
+    </delete>
+
+	<!-- 프로젝트 번호 리스트에 해당하는 일정 일괄 삭제 -->
+    <delete id="deleteSchedulesByProjectNos">
+        DELETE
+        FROM
+        	SCHEDULE
+        WHERE
+        	PROJECT_NO IN
+        <foreach collection="list" item="projectNo" open="(" separator="," close=")">
+            #{projectNo}
+        </foreach>
+    </delete>
+
+    <!-- 일정 유형 전체 조회 -->
+    <select id="selectScheduleType" resultType="ScheduleTypeVO">
+        SELECT
+            *
+        FROM
+        	SCHEDULE_TYPE
+    </select>
+
+</mapper>

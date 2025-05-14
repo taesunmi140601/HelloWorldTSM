@@ -1,0 +1,64 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 14.     	KMJ            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+body {
+	background: linear-gradient(to bottom, #3bb2f3, #1e90ff);
+}
+
+.dog {
+    position: absolute;
+    bottom: 0;
+    left: 90%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.speech-bubble {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  background-color: #ffffcc;
+  border: 2px solid #999999;
+  border-radius: 10px;
+  padding: 10px;
+  width: 200px;
+  font-family: "Malgun Gothic", sans-serif;
+  font-size: 13px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  line-height: 1.4;
+}
+
+/* 말풍선 꼬리 */
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  bottom: -10px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #999999;
+  border-bottom: 0;
+  margin-left: -10px;
+}
+
+.speech-bubble::before {
+  content: "";
+  position: absolute;
+  left: 21px;
+  bottom: -8px;
+  width: 0;
+  height: 0;
+  border: 9px solid transparent;
+  border-top-color: #ffffcc;
+  border-bottom: 0;
+  margin-left: -9px;
+}

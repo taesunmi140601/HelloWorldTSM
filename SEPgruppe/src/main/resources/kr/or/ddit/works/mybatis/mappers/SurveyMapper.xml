@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+ * == 개정이력(Modification Information) ==
+ *   
+ *   수정일      			수정자           수정내용
+ *  ============   	============== =======================
+ *  2025. 3. 25.     	SJH            최초 생성
+ *
+-->
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.SurveyMapper">
+	<!-- ✅ 설문 전체 조회 (진행 중) -->
+    <select id="selectAllSurveys" resultMap="surveyResultMap">
+	    SELECT * FROM survey WHERE closed = 'N'
+	</select>
+
+    <!-- ✅ 설문 전체 조회 (마감된 설문) -->
+    <select id="selectClosedSurveys" resultMap="surveyResultMap">
+		SELECT * FROM survey WHERE TRIM(UPPER(closed)) = 'Y'
+	</select>
+
+    <!-- ✅ 설문 생성 -->
+    <insert id="insertSurvey" parameterType="SurveyVO">
+        INSERT INTO survey (
+            id, survey_title, survey_content, survey_write_time,
+            survey_start_time, survey_end_time, survey_type,
+            survey_anonymous, survey_target_scope, emp_id, closed
+        )
+        VALUES (
+            #{id}, #{surveyTitle}, #{surveyContent}, #{surveyWriteTime},
+            #{surveyStartTime}, #{surveyEndTime}, #{surveyType},
+            #{surveyAnonymous}, #{surveyTargetScope}, #{empId}, 'N'
+        )
+    </insert>
+
+    <!-- ✅ 질문 생성 -->
+    <insert id="insertQuestion" parameterType="SurveyQuestionStatVO">
+        INSERT INTO survey_questions (
+            survey_no, survey_question_content, survey_is_required,
+            survey_question_type, survey_options, survey_additional_explanation
+        )
+        VALUES (
+            #{surveyNo}, #{heading}, 'N',
+            #{family}, #{choicesCsv}, NULL
+        )
+    </insert>
+
+    <!-- ✅ 설문 응답 저장 -->
+    <insert id="insertResponse" parameterType="SurveyResponseVO">
+        INSERT INTO survey_response (
+            survey_question_no, emp_id, survey_response_content, survey_response_timestamp
+        ) VALUES (
+            #{surveyQuestionNo}, #{empId}, #{surveyResponseContent}, SYSDATE
+        )
+    </insert>
+
+    <!-- ✅ 설문 결과 통계 -->
+    <select id="selectResultStats" parameterType="long" resultMap="QuestionStatResultMap">
+        SELECT 
+            q.survey_question_no AS question_id,
+            q.survey_question_content AS question_text,
+            r.survey_response_content AS answer_text,
+            COUNT(*) AS count
+        FROM survey_questions q
+        JOIN survey_response r ON q.survey_question_no = r.survey_question_no
+        WHERE q.survey_no = #{surveyId}
+        GROUP BY q.survey_question_no, q.survey_question_content, r.survey_response_content
+    </select>
+
+    <!-- ✅ 응답 통계 매핑 -->
+    <resultMap id="QuestionStatResultMap" type="SurveyQuestionStatVO">
+        <result property="questionId" column="question_id"/>
+        <result property="questionText" column="question_text"/>
+        <result property="answerText" column="answer_text"/>
+        <result property="count" column="count"/>
+    </resultMap>
+    
+    <resultMap id="surveyResultMap" type="SurveyVO">
+	    <id     property="surveyNo"           column="survey_no"/>
+<!-- 	    <result property="surveyTitle"        column="survey_title"/> -->
+	    <result property="title"			  column="title"/>
+	    <result property="surveyContent"      column="survey_content"/>
+	    <result property="surveyWriteTime"    column="survey_write_time"/>
+	    <result property="surveyStartTime"    column="survey_start_time"/>
+	    <result property="surveyEndTime"      column="survey_end_time"/>
+	    <result property="surveyType"         column="survey_type"/>
+	    <result property="surveyAnonymous"    column="survey_anonymous"/>
+	    <result property="surveyTargetScope"  column="survey_target_scope"/>
+	    <result property="empId"              column="emp_id"/>
+	    <result property="closed"             column="closed"/> <!-- ✅ 중요 -->
+	    <result property="id"                 column="id"/>      <!-- SurveyMonkey ID -->
+	</resultMap>
+	    
+</mapper>

@@ -1,0 +1,33 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 9.     	JSW            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.sidebar {
+  width: 260px; /* 또는 KaiAdmin의 고정 사이드바 너비 */
+}
+
+.main-panel {
+  flex-grow: 1;
+  background-color: #f4f6f9;
+  padding: 20px;
+}

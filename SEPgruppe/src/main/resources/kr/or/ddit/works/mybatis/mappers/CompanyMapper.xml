@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.CompanyMapper">
+
+	<!-- 아이디 중복 확인 -->
+	<select id="countByContactId" parameterType="String" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM COMPANIES
+		WHERE contact_id = #{contactId}
+	</select>
+
+	<!-- 사업자등록번호 중복 확인 -->
+	<select id="countByBusinessRegNo" parameterType="String" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM COMPANIES
+		WHERE business_reg_no = #{businessRegNo}
+	</select>
+
+	<insert id="insertCompany">
+	    INSERT INTO COMPANIES (
+	        CONTACT_ID,
+	        COMPANY_NAME,
+	        CONTACT_NM,
+	        CONTACT_PHONE,
+	        CONTACT_EMAIL,
+	        COMPANY_ZIP,
+	        COMPANY_ADD1,
+	        COMPANY_ADD2,
+	        CONTACT_PW,
+	        BUSINESS_REG_NO,
+	        SIGN_UP
+	    ) VALUES (
+	        #{contactId},
+	        #{companyName},
+	        #{contactNm},
+	        #{contactPhone},
+	        #{contactEmail},
+	        #{companyZip},
+	        #{companyAdd1},
+	        #{companyAdd2},
+	        #{contactPw},
+	        #{businessRegNo},
+	        SYSDATE
+	    )
+	</insert>
+	
+	<insert id="insertCompanyDivision">
+	    INSERT INTO COMPANY_DIVISION (
+	    	COMPANY_NO
+	        , CONTACT_ID
+	    ) VALUES (
+	        #{companyNo},
+	        #{contactId}
+	    )
+	</insert>
+
+	    <!-- 회원정보 조회 -->
+    <select id="selectCompany">
+        SELECT
+		    CONTACT_ID
+		  , COMPANY_NAME
+		  , CONTACT_NM
+		  , CONTACT_PHONE
+		  , CONTACT_EMAIL
+		  , CONTACT_PW
+		  , BUSINESS_REG_NO
+		  , IS_DELETED
+		  , COMPANY_NO
+		  , ADMIN_ID
+        FROM
+            COMPANIES
+        WHERE CONTACT_ID = #{contactId,jdbcType=VARCHAR}
+    </select>
+
+        <!-- 마이페이지 정보 수정 -->
+    <update id="updateCompany">
+        UPDATE COMPANIES
+        SET
+			CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR}
+			, CONTACT_EMAIL = #{contactEmail,jdbcType=VARCHAR}
+			<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(contactPw)">
+			, CONTACT_PW = #{contactPw,jdbcType=VARCHAR}
+			</if>
+        WHERE CONTACT_ID = #{contactId,jdbcType=VARCHAR}
+    </update>
+    
+    <update id="updateCompanyAdmin">
+    	UPDATE COMPANIES
+        SET
+        	ADMIN_ID = #{adminId}
+        WHERE CONTACT_ID = #{contactId}
+    </update>
+    
+    <select id="companyList">
+    	SELECT
+		    CONTACT_ID
+		  , COMPANY_NAME
+		  , CONTACT_NM
+		  , CONTACT_PHONE
+		  , CONTACT_EMAIL
+		  , CONTACT_PW
+		  , BUSINESS_REG_NO
+		  , IS_DELETED
+		  , COMPANY_NO
+		  , ADMIN_ID
+		  , COMPANY_ZIP
+		  , COMPANY_ADD1
+		  , COMPANY_ADD2
+		  , SIGN_UP
+		FROM
+		    COMPANIES
+    </select>
+	
+	<select id="selectCompanyNo" resultType="CompaniesVO">
+	    SELECT
+	        CONTACT_ID,
+	        COMPANY_NAME,
+	        CONTACT_NM,
+	        CONTACT_PHONE,
+	        CONTACT_EMAIL,
+	        CONTACT_PW,
+	        BUSINESS_REG_NO,
+	        IS_DELETED,
+	        COMPANY_NO,
+	        ADMIN_ID,
+	        COMPANY_ZIP,
+	        COMPANY_ADD1,
+	        COMPANY_ADD2,
+	        SIGN_UP
+	    FROM COMPANIES
+	    WHERE COMPANY_NO = #{companyNo}
+	</select>
+		
+</mapper>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.ProjectMapper">
+	
+	 <resultMap id="projectDetailResultMap" type="kr.or.ddit.works.project.vo.ProjectVO">
+	    <id property="projectNo" column="project_no" />
+	    <result property="empId" column="emp_id" />
+	    <result property="empNm" column="creator_emp_nm" />
+	    <result property="projectTitle" column="project_title" />
+	    <result property="projectStartTime" column="project_start_time" />
+	    <result property="projectEndTime" column="project_end_time" />
+	    <result property="projectStatus" column="project_status" />
+	    <result property="projectDesc" column="project_desc" />
+	
+	    <!-- 참여자 리스트 -->
+	    <collection property="participants" ofType="kr.or.ddit.works.project.vo.ProjectVO$Participant">
+	        <result property="empId" column="participant_emp_id" />
+	        <result property="empNm" column="participant_emp_nm" />
+	        <result property="projectNo" column="project_no" />
+	    </collection>
+	
+	    <!-- 일감 리스트 -->
+	    <collection property="tasks" ofType="kr.or.ddit.works.project.vo.ProjectVO$Task">
+	        <result property="taskNo" column="task_no" />
+	        <result property="taskTitle" column="task_title" />
+	        <result property="progress" column="progress" />
+	        <result property="priority" column="priority" />
+	    </collection>
+	</resultMap>
+	
+	<!-- 프로젝트 목록 조회 -->
+    <select id="selectListAllProject" parameterType="String" resultType="kr.or.ddit.works.project.vo.ProjectVO">
+        SELECT 
+            PROJECT_NO, 
+            EMP_ID, 
+            PROJECT_TITLE, 
+            PROJECT_START_TIME AS PROJECT_START_TIME, 
+            PROJECT_END_TIME AS PROJECT_END_TIME, 
+            PROJECT_STATUS, 
+            PROJECT_DESC 
+        FROM 
+            PROJECT  -- 실제 테이블 이름
+        WHERE 
+            EMP_ID = #{empId}  -- 사용자의 ID로 필터링
+        ORDER BY 
+            PROJECT_START_TIME  -- 시작일 기준으로 정렬
+    </select>
+    
+    <!-- 생성한 프로젝트 -->
+    <select id="selectProjectsCreatedBy" resultType="ProjectVO">
+        SELECT * FROM PROJECT
+        WHERE EMP_ID = #{empId}
+    </select>
+
+    <!-- 참여한(진행중) 프로젝트 -->
+    <select id="selectProjectsJoinedBy" resultType="ProjectVO">
+        SELECT * FROM PROJECT
+	    WHERE PROJECT_STATUS = '진행중'
+	      AND (
+	        EMP_ID = #{empId}
+	        OR PROJECT_NO IN (
+	            SELECT PROJECT_NO FROM PROJECT_PARTICIPANT
+	            WHERE EMP_ID = #{empId}
+	        )
+	      )
+    </select>
+    
+    <!-- 참여했던 프로젝트 (종료) -->
+	<select id="selectCompletedProjectsBy" resultType="ProjectVO">
+	    SELECT * FROM PROJECT
+	    WHERE PROJECT_STATUS = '종료'
+	      AND (
+	        EMP_ID = #{empId}
+	        OR PROJECT_NO IN (
+	            SELECT PROJECT_NO FROM PROJECT_PARTICIPANT
+	            WHERE EMP_ID = #{empId}
+	        )
+	      )
+	</select>
+	
+	<!-- 메인페이지 위젯용 -->
+	<select id="selectMyProjectTasks" parameterType="string" resultType="TaskVO">
+  		SELECT 
+		    p.project_title,
+		    t.task_title,
+		    t.priority,
+		    t.task_end_date,
+		    e.emp_nm,
+		    t.task_no
+		  FROM task t
+		  JOIN project p ON t.project_no = p.project_no
+		  JOIN project_participant pp ON t.project_participant_no = pp.project_participant_no
+		  JOIN employee e ON t.emp_id = e.emp_id
+		  WHERE t.emp_id = #{empId}
+		  	AND p.project_status = '진행중'
+		  ORDER BY 
+		  	CASE t.priority
+	            WHEN '즉시' THEN 1
+	            WHEN '긴급' THEN 2
+	            WHEN '높음' THEN 3
+	            WHEN '보통' THEN 4
+	            WHEN '낮음' THEN 5
+	            ELSE 6
+        	END ASC,
+        	t.task_end_date ASC
+	</select>
+    
+    <!-- 프로젝트 상세 조회 -->
+    <select id="selectProjectDetail" resultMap="projectDetailResultMap">
+        SELECT 
+            p.PROJECT_NO, 
+            p.EMP_ID, 
+            p.PROJECT_TITLE, 
+            p.PROJECT_START_TIME, 
+            p.PROJECT_END_TIME, 
+            p.PROJECT_STATUS, 
+            p.PROJECT_DESC,
+            pp.EMP_ID AS participant_emp_id,
+            pe.EMP_NM AS participant_emp_nm,   <!-- 참여자 이름 -->
+            ce.EMP_NM AS creator_emp_nm,   <!-- PL 이름 -->
+            t.TASK_NO, 
+            t.TASK_TITLE, 
+            t.PROGRESS, 
+            t.PRIORITY
+        FROM 
+            PROJECT p
+        LEFT JOIN 
+            PROJECT_PARTICIPANT pp ON p.PROJECT_NO = pp.PROJECT_NO
+        LEFT JOIN 
+            EMPLOYEE pe ON pp.EMP_ID = pe.EMP_ID		
+        LEFT JOIN 
+            EMPLOYEE ce ON p.EMP_ID = ce.EMP_ID
+        LEFT JOIN 
+            TASK t ON pp.PROJECT_NO = t.PROJECT_NO
+        WHERE 
+            p.PROJECT_NO = #{projectNo}
+    </select>
+
+    <!-- 프로젝트 생성 -->
+	<insert id="insertProject" parameterType="kr.or.ddit.works.project.vo.ProjectVO">
+    <selectKey keyProperty="projectNo" resultType="long" order="BEFORE">
+        SELECT project_seq.NEXTVAL FROM dual
+    </selectKey>
+    
+	    INSERT INTO project (
+	        project_no,
+	        emp_id,
+	        project_title,
+	        project_start_time,
+	        project_end_time,
+	        project_status,
+	        project_desc
+	    ) VALUES (
+	        #{projectNo},
+	        #{empId},
+	        #{projectTitle},
+	        #{projectStartTime},
+	        #{projectEndTime},
+	        #{projectStatus},
+	        #{projectDesc}
+	    )
+	</insert>
+
+    <!-- 프로젝트 참여자 추가 -->
+	<insert id="insertParticipant" parameterType="kr.or.ddit.works.project.vo.ProjectVO$Participant">
+    <selectKey keyProperty="projectParticipantNo" resultType="long" order="BEFORE">
+        SELECT project_participant_seq.NEXTVAL FROM dual
+    </selectKey>
+	    INSERT INTO project_participant (
+	    	project_participant_no,
+	    	project_no, 
+	    	emp_id
+	    ) VALUES (
+	    	#{projectParticipantNo},
+		    #{projectNo}, 
+		    #{empId}
+	    )
+	</insert>
+	
+	<select id="selectParticipantNo" resultType="long">
+	    SELECT project_participant_no
+	    FROM project_participant
+	    WHERE project_no = #{projectNo} AND emp_id = #{empId}
+	</select>
+
+    <!-- 여러 프로젝트 참여자 추가 -->
+	<insert id="insertParticipants" parameterType="list">
+	    <foreach collection="list" item="participant" index="index" open="(" separator="),(" close=")">
+	        #{participant.projectNo}, #{participant.empId}
+	    </foreach>
+	</insert>
+
+    <!-- 전체 사원 조회 -->
+    <select id="selectListAllEmployee" parameterType="String" resultType="kr.or.ddit.works.organization.vo.EmployeeVO">
+        SELECT 
+            emp_id,
+            emp_no,
+            emp_nm,
+            position_cd,
+            dept_cd,
+            emp_pw,
+            emp_zip,
+            emp_add1,
+            emp_add2,
+            emp_email,
+            emp_phone,
+            emp_regdate,
+            emp_retire,
+            emp_img,
+            emp_bank,
+            emp_depositor,
+            emp_bankno,
+            emp_gender
+        FROM EMPLOYEE
+        WHERE company_no = #{companyNo}
+    </select>
+    
+    <update id="updateProjectStatus">
+	    UPDATE project
+	    SET project_status = #{projectStatus}
+	    WHERE project_no = #{projectNo}
+	</update>
+    
+    <delete id="deleteProjects" parameterType="list">
+	    DELETE FROM project
+	    WHERE project_no IN
+	    <foreach collection="list" item="projectNo" open="(" separator="," close=")">
+	        #{projectNo}
+	    </foreach>
+	</delete>
+</mapper>
+	
+	
+
+	

@@ -1,0 +1,108 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 17.     	KMJ            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.content {
+	max-width: 1200px;
+	margin-left: auto; 
+    margin-right: auto;
+}
+.page-header {
+	padding: 40px;
+}
+
+/* .biggestContainer { */
+/*     display: flex; */
+/*     flex-direction: column; 세로 정렬 */
+/* } */
+
+.fc-daygrid-day:hover {
+    background-color: rgb(238, 238, 238);
+    cursor: pointer;
+}
+
+#calendar {
+    background: white;
+    color: rgb(61, 110, 75);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.fc-event {
+/*     background-color: rgb(127, 159, 94) !important; */
+    color: black;
+    border-radius: 5px;
+}
+
+.fc .fc-toolbar button {
+  color: white !important; /* 아이콘 색상 */
+  background-color: rgb(61, 110, 75) !important; /* 버튼 배경색 */
+}
+
+.fc-theme-standard .fc-col-header-cell {
+  color: rgb(61, 110, 75) !important;
+}
+.fc .fc-daygrid-day-number {
+  color: rgb(61, 110, 75) !important; /* 날짜 숫자 색 */
+}
+
+/* 전체 모달 스타일 */
+/* .modal-content { */
+/*   background-color: #44644A; 배경색 */
+/*   color: white; 텍스트 색상 */
+/*   border-radius: 10px; 모서리 둥글게 */
+/*   padding: 20px; */
+/* } */
+
+/* 입력 필드 스타일 */
+/* input[type="text"], input[type="date"], textarea { */
+/*   width: 100%; */
+/*   padding: 10px; */
+/*   margin-bottom: 15px; */
+/*   border: 1px solid black; */
+/*   border-radius: 5px; */
+/*   background-color: rgb(247, 239, 230); */
+/*   color: black; */
+/* } */
+
+.table {
+    width: 100%; /* 테이블의 너비를 100%로 설정 */
+    background-color: rgb(247, 239, 230) !important;
+}
+
+#calendarLegend {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.legendItem {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.legendColor {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.legendItem.active {
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}

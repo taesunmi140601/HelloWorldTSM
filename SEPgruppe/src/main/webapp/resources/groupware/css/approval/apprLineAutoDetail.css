@@ -1,0 +1,41 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 12.     	JYS            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+#autoLineSetTbody {
+    display: block;
+    height: 200px; /* 고정 높이 */
+    overflow-y: auto; /* 스크롤 생성 */
+    width: 100%;
+}
+
+#autoLineSetTable thead, #autoLineSetTable tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.button-container {
+    /* position: fixed; */
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    padding: 10px 0;
+}
+
+#centerTr, #autoLineSetTbody {
+	text-align: center; /* 가로(수평) 중앙 정렬 */
+	vertical-align: middle; /* 세로(수직) 중앙 정렬 */
+}
+
+option {
+	text-align:center;
+}

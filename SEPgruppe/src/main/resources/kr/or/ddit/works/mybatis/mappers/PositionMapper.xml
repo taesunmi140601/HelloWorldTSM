@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.PositionMapper">
+	<select id="selectPositionList" resultType="PositionVO">
+		SELECT
+		    position_cd
+		  , position_name
+		FROM
+		    position
+		ORDER BY
+			position_cd
+	</select>
+	
+	<select id="selectPositionName" parameterType="String" resultType="String">
+		SELECT
+		 	position_name
+		FROM
+		    position
+		WHERE 
+			position_cd = #{positionCd}
+	</select>
+	
+	<delete id="deletePositions">
+        DELETE FROM position
+        WHERE position_cd IN
+        <foreach item="code" collection="positionCds" open="(" separator="," close=")">
+            #{code}
+        </foreach>
+    </delete>
+    
+    <select id="selectPositionListCount" resultType="PositionVO">
+	    SELECT p.position_cd,
+	           p.position_name,
+	           (SELECT COUNT(*) FROM employee e WHERE e.position_cd = p.position_cd) AS member_count
+	    FROM position p
+	    ORDER BY p.position_cd
+	</select>
+	
+	<insert id="insertPosition" parameterType="PositionVO">
+		INSERT INTO position (position_cd, position_name)
+			VALUES (#{positionCd}, #{positionName})
+	</insert>
+	
+	<update id="updateSortOrder">
+	    UPDATE position
+	    SET sort_order = #{sortOrder}
+	    WHERE position_cd = #{positionCd}
+	</update>
+	
+</mapper>

@@ -1,0 +1,92 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 24.     	JSW            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+.myEmployeeContainer {
+	padding: 40px;
+}
+
+.ehr_basic_info {
+    width: 100%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 10px;
+}
+
+.type_list_box {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.type_list_box th, .type_list_box td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.type_list_box th {
+    background: #f4f4f4;
+    font-weight: bold;
+    text-align: center;
+}
+
+.profile_image {
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.img_profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+p.kor, p.eng, p.chi {
+    margin: 3px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.number_txt, .telephone_txt, .email_txt, .mobile_txt, .rank_txt, .phone_txt {
+    font-weight: normal;
+    color: #222;
+}
+
+.type_list_box td:last-child {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.txt {
+	text-align: center;
+}
+.last {
+	text-align: left !important;
+}
+.regdate_txt {
+	text-align: left !important;
+}
+.mobile_txt {
+	text-align: left !important;
+}
+.card {
+	margin: auto;
+}

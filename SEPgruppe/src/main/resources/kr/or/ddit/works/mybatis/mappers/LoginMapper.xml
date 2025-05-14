@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.LoginMapper">
+
+
+
+<resultMap type="AllUserVO" id="AllUserMap" autoMapping="true">
+	<collection property="authorities" ofType="AuthoritiesDTO">
+		<result column="ROLE_NAME" property="roleName" />
+		<result column="TARGET" property="target" />
+	</collection>
+
+	<discriminator javaType="string" column="TARGET">
+		<case value="EMPLOYEE" resultMap="empMap" />
+		<case value="COMPANY" resultMap="comMap" />
+		<case value="PROVIDER" resultMap="proMap" />
+	</discriminator>
+</resultMap>
+
+<resultMap type="EmployeeVO" id="empMap" extends="AllUserMap" autoMapping="true">
+    <result column="EMP_COMPANY_NO" property="companyNo"/>
+</resultMap>
+
+<resultMap type="CompaniesVO" id="comMap" extends="AllUserMap" autoMapping="true">
+    <result column="COM_COMPANY_NO" property="companyNo"/>
+</resultMap>
+<resultMap type="ProviderVO" id="proMap" extends="AllUserMap" autoMapping="true" />
+
+
+<select id="login" parameterType="string" resultMap="AllUserMap">
+
+	SELECT 
+        U.USER_ID,
+        U.USER_PW,
+        U.RETIRE,
+        U.TARGET,
+        E.COMPANY_NO AS EMP_COMPANY_NO,
+        C.COMPANY_NO AS COM_COMPANY_NO,
+        E.*,
+        C.*,
+        P.*,
+        R.ROLE_NAME
+       
+    FROM ALL_USER U
+        LEFT OUTER JOIN EMPLOYEE E ON U.USER_ID = E.EMP_ID AND U.TARGET = 'EMPLOYEE'
+        LEFT OUTER JOIN COMPANIES C ON U.USER_ID = C.CONTACT_ID AND U.TARGET = 'COMPANY'
+    	LEFT OUTER JOIN PROVIDER P ON U.USER_ID = P.PROVIDER_ID AND U.TARGET = 'PROVIDER'
+    	LEFT OUTER JOIN EMP_ROLE R ON U.USER_ID = R.EMP_ID
+    WHERE U.USER_ID = #{userId}
+</select>
+
+<select id="autoLogin" resultType="CompaniesVO">
+	SELECT
+	    CONTACT_ID
+	  , COMPANY_NAME
+	  , CONTACT_NM
+	  , CONTACT_PHONE
+	  , CONTACT_EMAIL
+	  , CONTACT_PW
+	  , BUSINESS_REG_NO
+	  , IS_DELETED
+	  , COMPANY_NO
+	  , ADMIN_ID
+	FROM
+	    COMPANIES
+	WHERE ADMIN_ID = #{userId}
+</select>
+
+<select id="findAccount" resultType="CompaniesVO">
+	SELECT
+	    CONTACT_ID
+	  , COMPANY_NAME
+	  , CONTACT_NM
+	  , CONTACT_PHONE
+	  , CONTACT_EMAIL
+	  , CONTACT_PW
+	  , BUSINESS_REG_NO
+	  , IS_DELETED
+	  , COMPANY_NO
+	  , ADMIN_ID
+	FROM
+	    COMPANIES
+	WHERE CONTACT_NM = #{contactNm}
+	AND	  CONTACT_EMAIL = #{contactEmail}
+	<if test="contactId != null and contactId != ''">
+    AND CONTACT_ID = #{contactId}
+    </if>
+</select>
+
+<update id="updateCompany">
+	UPDATE COMPANIES
+	SET 
+	    COMPANY_NAME = #{companyName}, 
+	    CONTACT_NM = #{contactNm},
+	    CONTACT_PHONE = #{contactPhone}, 
+	    CONTACT_EMAIL = #{contactEmail}, 
+	    CONTACT_PW = #{contactPw}, 
+	    BUSINESS_REG_NO = #{businessRegNo}, 
+	    IS_DELETED = #{isDeleted}, 
+	    COMPANY_NO = #{companyNo}, 
+	    ADMIN_ID = #{adminId}
+	WHERE CONTACT_ID = #{contactId}
+</update>
+
+</mapper>

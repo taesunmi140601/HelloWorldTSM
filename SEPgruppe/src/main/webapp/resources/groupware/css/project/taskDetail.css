@@ -1,0 +1,130 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 14.     	KMJ            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.taskdetailContainer {
+	padding: 40px;
+}
+
+.biggestContainer {
+    display: flex; 
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+
+input[type="text"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+.tabs {
+    display: inline-block; 
+    width: fit-content;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 40px;
+    margin-bottom: 20px;
+}
+
+.tabs-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+.tabs-menu li a {
+	display: flex;
+    color: white;
+
+}
+.table-content {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 20px;
+}
+/* 제목, 프로젝트 생성버튼, 검색창 시작*/
+.buttonspart {
+    display: flex;
+/*     justify-content: space-between; */
+    align-items: center;
+    gap: 10px;
+}
+
+.input-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon input {
+    padding-right: 30px;
+}
+
+.input-icon-addon {
+    position: absolute;
+    right: 10px;
+    color: gray;
+}
+/* 제목, 프로젝트 생성버튼, 검색창 끝*/
+
+.hidden-tabs {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    padding: 10px 15px;
+    width: 100%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hidden-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+.hidden-menu li a {
+	display: flex;
+    color: black;
+
+}
+.progress-bar-container {
+    background-color: #e0e0e0; /* 배경색 */
+    border-radius: 5px;
+    width: 100%; /* 전체 너비 */
+    height: 20px; /* 높이 */
+    margin-top: 5px; /* 위쪽 여백 */
+}
+
+.progress-bar {
+    background-color: #4caf50; /* 진행률 색상 */
+    height: 100%; /* 높이를 100%로 설정 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: width 0.3s; /* 애니메이션 효과 */
+}
+#deleteTaskForm {
+	text-align: center;
+}

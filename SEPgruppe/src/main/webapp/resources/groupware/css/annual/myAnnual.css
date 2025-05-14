@@ -1,0 +1,96 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 20.     	JSW            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+body {
+    font-family: Arial, sans-serif;
+/*     margin: 5px; */
+}
+
+.myAnnualContainer {
+	padding: 40px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+/* div영역 */
+.wrap_statistics {
+    margin: 20px;
+    min-width: 940px;
+}
+.wrap_ehr_data {
+    border: 1px solid #dcdcdc;
+    margin-bottom: 40px;
+}
+.divide_bar.divide_space {
+    display: inline-block;
+    margin: 0 8px;
+    height: 200px;
+    background: #e5e5e5;
+}
+.divide_bar {
+    display: inline-block;
+    margin: 60px 10px;
+    width: 1px;
+    height: 58px;
+    background: #eaeaea;
+    vertical-align: top;
+}
+.wrap_ehr_data.ehr_holiday_data .ehr_stat_data {
+    width: 8%;
+}
+.wrap_ehr_data .ehr_stat_data {
+   	margin: 30px;
+    display: inline-block;
+    width: 15%;
+    max-width: 220px;
+    vertical-align: top;
+}
+.wrap_statistics .ehr_stat_data span.help {
+    margin-top: 0;
+    vertical-align: top;
+}
+.stat_txt {
+	text-align: center;
+	font-weight: bold;
+	font-size: 25px;
+}
+.stat_tit {
+	text-align: center !important;
+}
+.txt {
+	text-align: center !important;
+}
+#current-date {
+	text-align: center;
+}
+.page-header {
+	margin: 20px;
+}

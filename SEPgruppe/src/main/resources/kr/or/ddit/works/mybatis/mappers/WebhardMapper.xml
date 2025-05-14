@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.WebhardMapper">
+
+<select id="selectWebhardList" resultType="WebhardVO">
+	SELECT 
+		WEBHARD_NM,
+		ULD_YMD,
+		FILE_EXTN_NM,
+		FILE_SZ
+	FROM WEBHARD 
+</select>
+
+<select id="selectWebhard" resultType="WebhardVO">
+	SELECT
+		WEBHARD_NO,
+		PARENT_FOLDER_NO,
+		EMP_ID,
+		ITEM_TYPE,
+		WEBHARD_NM,
+		FILE_SZ,
+		FILE_EXTN_NM,
+		FILE_PATH_NM,
+		ULD_YMD,
+		FILE_DEL_YN,
+		FILE_FAVORITE,
+		FILE_UPDATE_DATE,
+		FILE_ID
+	FROM WEBHARD	
+</select>
+
+<insert id="insertWebhard">
+    INSERT INTO WEBHARD (
+		WEBHARD_NO,
+		PARENT_FOLDER_NO,
+		EMP_ID,
+		ITEM_TYPE,
+		WEBHARD_NM,
+		FILE_SZ,
+		FILE_EXTN_NM,
+		FILE_PATH_NM,
+		ULD_YMD,
+		FILE_DEL_YN,
+		FILE_FAVORITE,
+		FILE_UPDATE_DATE,
+		FILE_ID
+    ) VALUES (
+        WEBHARD_SEQ.NEXTVAL
+	    , #{parentFolderNo}
+	    , #{empId}
+	    , #{itemType}
+	    , #{webhardNm}
+        , #{fileSz}
+        , #{fileExtnNm}
+        , #{filePathNm}
+        , TO_DATE(SYSDATE, 'YYYY-MM-DD')
+        , 'N'
+        , 'N'
+        , TO_DATE(SYSDATE, 'YYYY-MM-DD')
+        , #{fileId}
+    )
+</insert>
+
+<select id="selectWebhardByFileId" parameterType="String" resultType="WebhardVO">
+    SELECT
+        WEBHARD_NO,
+        PARENT_FOLDER_NO,
+        EMP_ID,
+        ITEM_TYPE,
+        WEBHARD_NM,
+        FILE_SZ,
+        FILE_EXTN_NM,
+        FILE_PATH_NM,
+        ULD_YMD,
+        FILE_DEL_YN,
+        FILE_FAVORITE,
+        FILE_UPDATE_DATE,
+        FILE_ID
+    FROM WEBHARD
+    WHERE FILE_ID = #{fileId}
+</select>
+
+<delete id="deleteWebhard">
+	DELETE FROM WEBHARD
+	WHERE FILE_ID = #{fileId}
+</delete>
+
+<select id="findFilesByName" resultType="WebhardVO">
+    SELECT 
+    	WEBHARD_NM, 
+    	ULD_YMD, 
+    	FILE_EXTN_NM, 
+    	FILE_SZ 
+    FROM WEBHARD
+    WHERE WEBHARD_NM LIKE '%' || #{keyword} || '%'
+</select>
+
+</mapper>

@@ -1,0 +1,206 @@
+/**
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 14.     	KMJ            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.biggestContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/* h2 { */
+/* 	color: white; */
+/* } */
+/* .sidebarAll { */
+/*     width: 250px; */
+/*     background: rgb(75,86,81); */
+/*     color: white; */
+/*     padding: 20px; */
+/*     display: flex; */
+/*     flex-direction: column; */
+/* } */
+/* .sidebarAll h2 { */
+/*     margin-bottom: 20px; */
+/*     text-align: center; */
+/*     color: #c9a66b; */
+/* } */
+/* .btn-secondary { */
+/*     background: #a67c52; */
+/*     color: white; */
+/*     border: none; */
+/*     padding: 12px; */
+/*     border-radius: 8px; */
+/*     cursor: pointer; */
+/*     margin-bottom: 20px; */
+/*     font-weight: bold; */
+/* } */
+/* .btn-secondary:hover { */
+/*     background: #c19a6b; */
+/* } */
+/* .sidebarAll ul { */
+/*     list-style: none; */
+/* } */
+/* .sidebarAll li { */
+/*     padding: 4px; */
+/*     font-size: 16px; */
+/*     cursor: pointer; */
+/* } */
+/* .submenu { */
+/*     display: none; */
+/* }    */
+/* .submenu li a { */
+/*     color: white; */
+/*     text-decoration: none; */
+/*     display: block; */
+/*     padding: 8px; */
+/*     font-size: 14px; */
+/*     border-radius: 5px; */
+/*     transition: 0.3s; */
+/* } */
+/* .submenu li a:hover { */
+/*     background: #768b68; */
+/* } */
+/* 전체 네비게이션 스타일 */
+.top-nav {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center;
+    background: #4B5651; /* 다크 그린 계열 배경 */
+    padding: 10px 20px;
+    border-radius: 40px; /* 둥근 네비바 */
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto; /* 중앙 정렬 */
+}
+
+/* 네비게이션 내부 정렬 */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* 왼쪽 메뉴 */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* 우측 영역 스타일 */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 언어 선택 버튼 */
+.lang-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 우측 메뉴 */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* 기부 버튼 */
+.donate-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 구분선 */
+.divider {
+    height: 20px;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* 본문 */
+.contentContainer {
+ flex: 1;  /* 남은 공간을 모두 차지하도록 설정 */
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f5f1e6;
+}
+
+.table-content {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 20px;
+}
+.selectBox {
+    display: inline-block;
+    padding: 20px;
+    margin: 10px;
+    border: 2px dashed #6d4c41;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    background: #e6d5a8;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.selectBox:hover {
+    background: #d8c3a5;
+}
+
+.file-input {
+    display: none;
+}
+
+

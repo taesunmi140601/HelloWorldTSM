@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+
+.d-flex h6 {
+    margin-left: auto; 
+    text-align: right; 
+}
+.plan-class {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+

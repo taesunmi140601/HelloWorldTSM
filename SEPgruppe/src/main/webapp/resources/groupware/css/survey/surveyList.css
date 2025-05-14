@@ -1,0 +1,85 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 27.     	SJH            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+/* surveyList.css */
+
+/* 전체 여백 조정 */
+body {
+    padding: 2rem;
+    background-color: #f8f9fa;
+}
+
+/* 카드 디자인 */
+.card {
+    margin-bottom: 2rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* 카드 헤더 스타일 */
+.card-header {
+    background-color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem 1.25rem;
+}
+
+/* 테이블 전체 스타일 */
+.table {
+    width: 100% !important;
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+
+/* 테이블 테두리 스타일 */
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > td {
+    border: 1px solid #dee2e6;
+}
+
+/* 링크 스타일 */
+.table a {
+    text-decoration: none;
+    color: #0d6efd;
+    font-weight: 500;
+}
+
+.table a:hover {
+    text-decoration: underline;
+    color: #0a58ca;
+}
+
+/* DataTables Search 및 Length 컨트롤 간격 */
+.dataTables_length,
+.dataTables_filter {
+    margin-bottom: 1rem;
+}
+
+/* 테이블 행 hover 효과 */
+.table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+/* 반응형 대응 */
+@media (max-width: 768px) {
+    .table th,
+    .table td {
+        font-size: 0.875rem;
+        padding: 0.5rem;
+    }
+
+    .card-header {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+    }
+}

@@ -1,0 +1,143 @@
+@charset "UTF-8";
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 5.     	SJH            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+body {
+	background-color: #f8f9fa;
+}
+
+#calendar {
+	margin: 20px 0;
+}
+
+.table {
+	margin-top: 20px;
+}
+
+.available-slot {
+	background-color: #f0f0f0; /* 비어 있는 슬롯 색상 */
+	cursor: pointer; /* 클릭 가능함을 나타내는 커서 */
+}
+
+.time-slot {
+	background-color: #007bff; /* 예약된 슬롯 색상 */
+	color: white; /* 예약된 슬롯 텍스트 색상 */
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+h2 {
+	text-align: center;
+	font-weight: bold;
+}
+
+/* 날짜 내비게이션 h4 전체 */
+h4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 15px;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: normal;
+    font-size: 1.1rem;
+}
+
+/* 날짜 텍스트 강조 */
+#currentDate {
+    font-size: 1.9rem;
+    color: #333;
+}
+
+/* 이전/다음 버튼 스타일 */
+h4 a {
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+h4 a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.table th, .table td {
+	text-align: center;
+	white-space: nowrap;        /* 줄바꿈 방지 */
+    overflow: hidden;           /* 넘치는 글자는 숨김 */
+    text-overflow: ellipsis;    /* 말줄임표 (...) 처리 가능 */
+    vertical-align: middle;     /* 수직 정렬 가운데 */
+    max-width: 120px;           /* 필요시 최대 너비 지정 */
+}
+
+/* 회의실 이름 열은 글자가 깨지지 않도록 너비 확보 */
+table td:first-child, table th:first-child {
+  min-width: 80px;
+}
+
+/* 예약 내용(예: 예약자 이름, 시간 등)이 표시되는 셀에 넓은 공간 확보 */
+table td.bg-light {
+  min-width: 120px;
+}
+
+.time-slot {
+	background-color: white;
+	min-height: 50px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.reserved {
+	background-color: #007bff;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.reserved a {
+	color: white !important;
+	text-decoration: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+/* 수정된 부분: 회의실 정보 스타일 */
+.room-info {
+	text-align: left;
+	padding: 5px 10px;
+	font-size: 14px;
+}
+
+.room-info .room-name {
+	font-weight: bold;
+	color: #343a40;
+}
+
+.room-info .room-details {
+	font-size: 12px;
+	color: #666;
+	margin-top: 4px;
+}
+
+.room-info .room-details span {
+	display: block;
+	margin-top: 2px;
+}
+
+.main-panel .page-header {
+	padding: 40px;
+}

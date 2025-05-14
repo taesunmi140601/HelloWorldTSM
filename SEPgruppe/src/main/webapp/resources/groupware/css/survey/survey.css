@@ -1,0 +1,125 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 27.     	SJH            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+/* 전체 레이아웃 */
+body {
+  background-color: #f1f3f5;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  margin: 0;
+  padding: 2rem;
+}
+
+/* ✅ 카드 너비 조정 - KaiAdmin 검색창과 동일한 너비로 */
+.survey-container {
+  max-width: 1200px;         /* Bootstrap container-xl 기준 */
+  margin: 0 auto;            /* 중앙 정렬 */
+  padding: 1rem 1rem;
+  width: 100%;
+}
+
+/* 설문 카드 */
+.survey-card {
+  width: 100%;
+  background: #fff;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* 제목 */
+#surveyTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #212529;
+}
+
+#surveyDescription {
+  font-size: 1.1rem;
+  color: #868e96;
+  margin-bottom: 2rem;
+}
+
+/* 질문 블록 */
+.question {
+  margin-bottom: 2rem;
+}
+
+.question strong {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #343a40;
+}
+
+/* 옵션들 */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.option input[type="radio"],
+.option input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: #0d6efd;
+}
+
+/* 주관식 */
+textarea.open-answer {
+  width: 100%;
+  resize: vertical;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #ced4da;
+  background-color: #f8f9fa;
+}
+
+/* 버튼 */
+#endSurveyBtn {
+  display: block;
+  width: 100%;
+  background-color: #4dabf7;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 0.75rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 2rem;
+}
+
+#endSurveyBtn:hover {
+  background-color: #339af0;
+}
+
+/* 반응형 */
+@media (max-width: 576px) {
+  .survey-card {
+    padding: 1.5rem;
+  }
+
+  #surveyTitle {
+    font-size: 1.5rem;
+  }
+}

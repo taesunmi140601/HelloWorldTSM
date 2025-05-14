@@ -1,0 +1,45 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 12.     	JSW            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+#calendar-container {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.fc-toolbar-title {
+  font-size: 1.2rem;
+}
+
+.fc-button {
+  background-color: #808080 !important;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.fc-daygrid-event {
+  background-color: #17a2b8;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 4px;
+  font-size: 12px;
+}
+
+#schedulePreviewBox {
+  margin-top: 15px;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  font-size: 14px;
+}

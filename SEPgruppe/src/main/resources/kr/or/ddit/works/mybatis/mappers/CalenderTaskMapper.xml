@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.CalenderTaskMapper">
+
+	<select id="selectListCalenderTask" resultType="kr.or.ddit.works.project.vo.TaskVO">
+        SELECT 
+            t.TASK_NO,
+            t.PROJECT_NO,
+            t.PROJECT_PARTICIPANT_NO,
+            t.EMP_ID,
+            e.EMP_NM,
+            t.TASK_TITLE,
+            t.TASK_CONTENT,
+            t.PROGRESS,
+            t.PRIORITY,
+            t.TASK_CREATE_DATE AS TASK_CREATE_DATE,
+            t.TASK_START_DATE AS TASK_START_DATE,
+            t.TASK_END_DATE AS TASK_END_DATE,
+            t.TASK_UPDATE_DATE AS TASK_UPDATE_DATE,
+            t.FILE_GROUP_NO,
+            p.PROJECT_TITLE
+        FROM 
+            task t
+        JOIN 
+            project p ON t.PROJECT_NO = p.PROJECT_NO
+        JOIN 
+            employee e ON t.EMP_ID = e.EMP_ID
+    </select>
+    
+</mapper>    

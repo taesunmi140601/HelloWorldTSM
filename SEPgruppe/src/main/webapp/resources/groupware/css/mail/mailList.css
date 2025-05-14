@@ -1,0 +1,261 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 7.     	KMJ            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+@charset "UTF-8";
+
+.mail-container {
+    display: flex;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* 사이드바 */
+.mailSidebar {
+    width: 220px;
+    background-color: #ffffff; /* 흰색으로 변경 */
+    color: #333; /* 텍스트 어두운 회색 */
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ddd; /* 구분선 추가 */
+}
+
+.mailSidebar h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #2c3e50; /* 진한 남색 계열로 강조 */
+}
+
+.mailSidebar .btn {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #3498db; /* 메일 쓰기 버튼: 파란색 */
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.mailSidebar .btn:hover {
+    background-color: #2980b9;
+}
+
+.menu-item {
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    display: block;
+    text-decoration: none;
+    color: #2c3e50;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+}
+
+.menu-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* 메일 리스트 영역 */
+.content-area {
+    flex: 1;
+    padding: 30px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+}
+
+.no-mail {
+    font-size: 18px;
+    color: #888;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.table {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.table th, .table td {
+    padding: 14px 16px;
+    font-size: 14px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.table thead {
+    background-color: #3498db;
+    color: white;
+}
+
+.mail-subject a {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+.mail-subject a:hover {
+    text-decoration: underline;
+    color: #2980b9;
+}
+
+.favorite-icon {
+    color: #f1c40f;
+}
+
+/* 메일 쓰기 폼 css */
+
+.compose-mail-wrapper {
+    width: 100%;
+}
+
+.compose-mail-form {
+    width: 100%;
+}
+
+.compose-mail-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.compose-mail-form input[type="text"],
+.compose-mail-form input[type="email"],
+.compose-mail-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    font-size: 14px;
+}
+
+.compose-mail-form button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.compose-mail-form button:hover {
+    background-color: #2980b9;
+}
+
+/***********************************
+ * 메일 상세보기 페이지 스타일 추가
+ ***********************************/
+.mail-back-btn {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #ecf5fc;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+/* 마우스 호버 시 색상 변화 */
+.mail-back-btn:hover {
+    background-color: #d8edf9;
+    color: #2c3e50;
+}
+
+/* 메일 상세 내용 전체를 감싸는 컨테이너 */
+.mail-view-container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+    line-height: 1.6; 
+    font-size: 14px;
+    color: #333;
+}
+
+/* 실제 메일 내용(본문) 부분 */
+.mail-view-container .mail-body {
+    margin-bottom: 20px;
+}
+
+/* 첨부파일 목록 영역 */
+.attachments {
+    margin-top: 10px;
+}
+
+.attachments h4 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+/* 첨부파일 목록 (ul, li) */
+.attachments ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.attachments li {
+    margin-bottom: 6px;
+}
+
+.attachments li a {
+    color: #2980b9;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.attachments li a:hover {
+    text-decoration: underline;
+}
+
+.attachments ul {
+    list-style: none;          /* 불필요한 기본 리스트 스타일 제거 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;           /* 여러줄로 자동 배치 */
+    gap: 14px;                 /* 항목 간격(간격 자유 조정) */
+}
+
+/* 첨부파일 항목 */
+.attachments li {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 12px 16px;        
+    min-width: 180px;          /* 박스 최소 너비(원하는 값으로 조정) */
+    display: flex;             /* 수직정렬을 위한 flex */
+    align-items: center;
+    justify-content: center;
+}
+
+/* 첨부파일 링크 스타일 */
+.attachments li a {
+    color: #2980b9;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* 호버 시 링크에 밑줄 */
+.attachments li a:hover {
+    text-decoration: underline;
+}

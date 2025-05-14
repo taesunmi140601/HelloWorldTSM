@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.TaskMapper">
+	
+	<select id="selectListAllTask" resultType="kr.or.ddit.works.project.vo.TaskVO">
+	    SELECT 
+	        t.TASK_NO,
+	        t.PROJECT_NO,
+	        t.PROJECT_PARTICIPANT_NO,
+	        p.EMP_ID AS projectEmpId,
+	        t.EMP_ID AS empId,
+	        e.EMP_NM AS empNm,
+	        t.TASK_TITLE,
+	        t.TASK_CONTENT,
+	        t.PROGRESS,
+	        t.PRIORITY,
+	        t.TASK_CREATE_DATE AS TASK_CREATE_DATE,
+	        t.TASK_START_DATE AS TASK_START_DATE,
+	        t.TASK_END_DATE AS TASK_END_DATE,
+	        t.TASK_UPDATE_DATE AS TASK_UPDATE_DATE,
+	        t.FILE_GROUP_NO,
+	        p.PROJECT_TITLE
+	    FROM 
+	        task t
+	    JOIN 
+	        project p ON t.PROJECT_NO = p.PROJECT_NO
+	    JOIN 
+	        employee e ON t.EMP_ID = e.EMP_ID
+	    ORDER BY 
+	        t.TASK_NO ASC
+	</select>
+	
+	<!-- projectNo로 필터링 -->
+	<select id="selectTasksByProjectNo" resultType="kr.or.ddit.works.project.vo.TaskVO">
+	    SELECT 
+	        t.TASK_NO,
+	        t.PROJECT_NO,
+	        p.PROJECT_TITLE AS projectTitle,
+	        t.EMP_ID AS empId,
+	        p.EMP_ID AS projectEmpId,
+	        e.EMP_NM AS empNm,
+	        t.TASK_TITLE,
+	        t.PROGRESS,
+	        t.PRIORITY,
+	        t.TASK_START_DATE,
+	        t.TASK_END_DATE,
+	        t.TASK_UPDATE_DATE
+	    FROM TASK t
+	    JOIN PROJECT p ON t.PROJECT_NO = p.PROJECT_NO
+	    JOIN EMPLOYEE e ON t.EMP_ID = e.EMP_ID
+	    WHERE t.PROJECT_NO = #{projectNo}
+	    ORDER BY
+        CASE t.PRIORITY
+            WHEN '즉시' THEN 1
+            WHEN '긴급' THEN 2
+            WHEN '높음' THEN 3
+            WHEN '보통' THEN 4
+            WHEN '낮음' THEN 5
+            ELSE 6
+        END,
+        t.TASK_END_DATE ASC
+	</select>
+    
+     <select id="selectTaskDetail" resultType="kr.or.ddit.works.project.vo.TaskVO">
+        SELECT 
+            t.TASK_TITLE AS taskTitle,
+            t.PROJECT_NO AS projectNo,       
+            t.TASK_CONTENT AS taskContent,
+            t.TASK_NO,  
+            t.PROGRESS AS progress,
+            t.PRIORITY,             
+            t.TASK_START_DATE AS taskStartDate,
+            t.TASK_END_DATE AS taskEndDate,    
+            e.EMP_NM AS empNm,                  
+            t.TASK_CREATE_DATE AS taskCreateDate,
+            t.EMP_ID as empId,
+            p.EMP_ID AS projectEmpId
+        FROM 
+            task t
+        JOIN 
+            employee e ON t.EMP_ID = e.EMP_ID
+        JOIN
+        	project p ON t.PROJECT_NO = p.PROJECT_NO
+        WHERE 
+            t.TASK_NO = #{taskNo}
+    </select>
+    
+    <select id="getNextTaskNo" resultType="int">
+	    SELECT MIN(TASK_NO) 
+	    FROM task 
+	    WHERE TASK_NO &gt; #{currentTaskNo}
+	</select>
+    
+   <select id="getPreviousTaskNo" resultType="int">
+	    SELECT MAX(TASK_NO) 
+	    FROM task 
+	    WHERE TASK_NO &lt; #{currentTaskNo}
+	</select>
+    
+   <insert id="insertTask" parameterType="kr.or.ddit.works.project.vo.TaskVO">
+    INSERT INTO TASK (
+        PROJECT_NO,
+        PROJECT_PARTICIPANT_NO,
+        EMP_ID,
+        TASK_TITLE,
+        TASK_CONTENT,
+        PROGRESS,
+        PRIORITY,
+        TASK_CREATE_DATE,
+        TASK_START_DATE,
+        TASK_END_DATE,
+        TASK_UPDATE_DATE,
+        FILE_GROUP_NO,
+        PROJECT_EMP_ID
+    ) VALUES (
+        #{projectNo},
+        #{projectParticipantNo},
+        #{empId},
+        #{taskTitle},
+        #{taskContent},
+        #{progress},
+        #{priority},
+        SYSDATE,
+        #{taskStartDate},
+        #{taskEndDate},
+        SYSDATE,
+        #{fileGroupNo},
+        #{projectEmpId}
+    )
+</insert>
+
+	 <select id="selectListAllParticipants" resultType="kr.or.ddit.works.project.vo.ProjectParticipantVO">
+        SELECT 
+        	pp.PROJECT_PARTICIPANT_NO, 
+            pp.PROJECT_NO, 
+            pp.EMP_ID, 
+            e.EMP_NM
+       	  FROM PROJECT_PARTICIPANT pp
+          JOIN EMPLOYEE e ON pp.EMP_ID = e.EMP_ID
+          WHERE pp.PROJECT_NO = #{projectNo}
+        
+          UNION
+
+		SELECT 
+			NULL AS PROJECT_PARTICIPANT_NO, 
+        	p.PROJECT_NO, 
+			p.EMP_ID, 
+			e.EMP_NM
+		  FROM PROJECT p
+		  JOIN EMPLOYEE e ON p.EMP_ID = e.EMP_ID
+		  WHERE p.PROJECT_NO = #{projectNo}
+    </select>
+    
+    <select id="selectAllProjects" parameterType="String" resultType="kr.or.ddit.works.project.vo.ProjectVO">
+    SELECT PROJECT_NO, PROJECT_TITLE 
+    FROM PROJECT 
+    WHERE PROJECT_NO IN (
+        SELECT PROJECT_NO 
+        FROM PROJECT_PARTICIPANT 
+        WHERE EMP_ID = #{empId}
+	    )
+	</select>
+	
+	<select id="selectProjectParticipantNo" resultType="long">
+	    SELECT PROJECT_PARTICIPANT_NO
+	    FROM PROJECT_PARTICIPANT
+	    WHERE PROJECT_NO = #{projectNo}
+	      AND EMP_ID = #{empId}
+	</select>
+	
+	<select id="selectProjectByNo" resultType="ProjectVO">
+	    SELECT 
+	    	PROJECT_NO
+			, p.EMP_ID
+			, e.EMP_NM
+			, p.PROJECT_TITLE
+			, p.PROJECT_START_TIME
+			, p.PROJECT_END_TIME
+			, p.PROJECT_STATUS
+			, p.PROJECT_DESC
+	      FROM PROJECT p
+	      LEFT JOIN EMPLOYEE e ON p.EMP_ID = e.EMP_ID 
+	     WHERE PROJECT_NO = #{projectNo}
+	</select>
+    
+     <!-- 마지막으로 삽입된 일감 번호를 가져오는 쿼리 -->
+    <select id="getLastInsertedTaskNo" resultType="long">
+        SELECT MAX(task_no) FROM task
+    </select>
+    
+    <update id="updateTask" parameterType="kr.or.ddit.works.project.vo.TaskVO">
+	    UPDATE TASK
+	    SET
+	        TASK_TITLE = #{taskTitle},
+	        TASK_CONTENT = #{taskContent},
+	        PROGRESS = #{progress},
+	        PRIORITY = #{priority},
+	        TASK_START_DATE = #{taskStartDate},
+	        TASK_END_DATE = #{taskEndDate},
+	        TASK_UPDATE_DATE = SYSDATE
+	    WHERE TASK_NO = #{taskNo}
+	</update>
+    
+    <!-- 업무 삭제 -->
+	<delete id="deleteTask" parameterType="long">
+	    DELETE FROM TASK
+	    WHERE
+	     TASK_NO = #{taskNo}
+	</delete>
+
+</mapper>

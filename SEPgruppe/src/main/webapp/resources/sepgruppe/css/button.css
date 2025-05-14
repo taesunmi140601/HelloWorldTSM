@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.button, .buttonDanger{
+	background-color: transparent;
+	border-radius: 5px;
+	height: 40px;
+	font-weight: bold;
+}
+
+.button{
+/*  		border: 2px solid #6db1a7; */
+/*  		color: #6db1a7; */
+ 		border: 2px solid white;		
+ 		color: white;
+}
+
+/* .button:hover { */
+/*     background-color: #6db1a7; 마우스를 올렸을 때 배경색 변경 */
+/*     color: white; 텍스트 색상 변경 (선택 사항) */
+/* } */
+
+.buttonDanger{
+		border: 2px solid #f27979;
+		color: #f27979;
+}
+
+.buttonDanger:hover {
+    background-color: #f27979; /* 마우스를 올렸을 때 배경색 변경 */
+    color: white; /* 텍스트 색상 변경 (선택 사항) */
+}
+
+#button{
+	
+	height: 50px;
+}

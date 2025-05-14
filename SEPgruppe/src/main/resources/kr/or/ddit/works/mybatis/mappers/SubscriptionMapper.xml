@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="kr.or.ddit.works.mybatis.mappers.SubscriptionMapper">
+	
+	<select id="planList" resultType="SubscriptionPlansVO">
+		SELECT PLAN_TYPE, MONTHLY_PRICE, ANNUAL_PRICE, MAINTAIN_OLD_PRICE, PLAN_NO, MAXIMUM_PEOPLE
+		FROM SUBSCRIPTION_PLANS
+	</select>
+	
+	<select id="planOne" resultType="SubscriptionPlansVO">
+		SELECT 
+			PLAN_TYPE
+			, MONTHLY_PRICE
+			, ANNUAL_PRICE
+			, MAINTAIN_OLD_PRICE
+			, PLAN_NO
+			, MAXIMUM_PEOPLE
+		FROM SUBSCRIPTION_PLANS
+		WHERE PLAN_TYPE = #{planType}
+	</select>
+	
+	<insert id="insertSubscription">
+		<selectKey keyProperty="subscriptionNo" resultType="long"
+			order="BEFORE">
+			SELECT SEQ_SUBSCRIPTION_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO SUBSCRIPTIONS (
+		    SUBSCRIPTION_NO
+		    , CONTACT_ID
+		    , PAYMENT_STATUS
+		    , SUBSCRIPTION_START
+		    , SUBSCRIPTION_END
+		    , SUBSCRIPTIONS_ACTIVE
+		    , PLAN_TYPE
+		    , BILLING_DATE
+		    , BILLING_KEY_ID
+		) VALUES (
+		    #{subscriptionNo}
+		  , #{contactId}
+		  , #{paymentStatus}
+		  , #{subscriptionStart}
+		  , #{subscriptionEnd}
+		  , #{subscriptionsActive}
+		  , #{planType}
+		  , #{billingDate}
+		  , #{billingKeyId}
+		)
+	</insert>
+	
+	<resultMap type="SubscriptionsVO" id="subMap" autoMapping="true">
+		<association property="subscriptionPlan" javaType="SubscriptionPlansVO" autoMapping="true">
+			<result property="monthlyPrice" column="MONTHLY_PRICE"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectSubscription" resultMap="subMap">
+		SELECT
+		    SUBSCRIPTION_NO
+		  , CONTACT_ID
+		  , PAYMENT_STATUS
+		  , TO_CHAR(SUBSCRIPTION_START, 'YYYY-MM-DD') AS SUBSCRIPTION_START
+		  , TO_CHAR(SUBSCRIPTION_END, 'YYYY-MM-DD') AS SUBSCRIPTION_END
+		  , SUBSCRIPTIONS_ACTIVE
+		  , PLAN_TYPE
+		  , BILLING_DATE
+		  , BILLING_KEY_ID
+		  , AUTO_PAYMENT
+		  , MONTHLY_PRICE
+		FROM SUBSCRIPTIONS
+		NATURAL JOIN SUBSCRIPTION_PLANS
+		WHERE CONTACT_ID =#{contactId}
+	</select>
+	
+	<select id="subscriptionList">
+		SELECT
+		    SUBSCRIPTION_NO
+		  , CONTACT_ID
+		  , PAYMENT_STATUS
+		  , SUBSCRIPTION_START
+		  , SUBSCRIPTION_END
+		  , SUBSCRIPTIONS_ACTIVE
+		  , PLAN_TYPE
+		  , BILLING_DATE
+		  , BILLING_KEY_ID
+		  , AUTO_PAYMENT
+		FROM
+		    SUBSCRIPTIONS
+	</select>
+	
+	<update id="updatePlan" parameterType="SubscriptionPlansVO">
+	    UPDATE SUBSCRIPTION_PLANS
+	    SET MONTHLY_PRICE = #{monthlyPrice},
+	        ANNUAL_PRICE = #{annualPrice},
+	        MAINTAIN_OLD_PRICE = #{maintainOldPrice},
+	        MAXIMUM_PEOPLE = #{maximumPeople}
+	    WHERE PLAN_NO = #{planNo}
+	</update>
+
+</mapper>

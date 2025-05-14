@@ -1,0 +1,25 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 13.     	JSW            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+.container {
+	display: block;
+}
+
+.text-black {
+	text-align: center;
+}
+.btn btn-outline-success btn-lg {
+	justify-content: center;
+}
+#seplogo {
+	height: 80px;
+}

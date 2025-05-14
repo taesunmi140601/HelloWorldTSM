@@ -1,0 +1,176 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 14.     	KMJ            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*여기서부터 사이드바*
+h2 {
+	color: white;
+}
+.biggestContainer {
+    display: flex; 
+    min-height: 100vh;
+}
+.sidebarAll {
+    width: 250px;
+    background: rgb(75,86,81);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.sidebarAll h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #c9a66b;
+}
+.btn-secondary {
+    background: #a67c52;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.btn-secondary:hover {
+    background: #c19a6b;
+}
+.sidebarAll ul {
+    list-style: none;
+}
+.sidebarAll li {
+    padding: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.submenu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.submenu li a:hover {
+    background: #768b68;
+}
+*여기까지가 사이드바*
+
+*여기서부터 본문*
+.contentContainer {
+ 	flex: 1;  /* 남은 공간을 모두 차지하도록 설정 */
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* 조직도 시작부분 */
+.org-chart {
+    display:flex;
+    justify-content:center;
+    ul {
+        padding-top: 20px;
+        position: relative;
+        transition: all 0.5s;
+        ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-left: 1px solid #ccc;
+            width: 0;
+        }
+    }
+li {
+    float: left;
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 10px;
+    transition: all 0.5s;
+&::before,&::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 1px solid #ccc;
+    width: 50%;
+    height: 20px;
+}
+&::after {
+   right: auto;
+   left: 50%;
+   border-left: 1px solid #ccc;
+}
+&:only-child::after, &:only-child::before {
+    display:none;
+}
+&:only-child {
+    padding-top:0;
+}
+&:first-child::before, &:last-child::after {
+    border: 0 none;
+}
+&:last-child::before {
+    border-right: 1px solid #ccc;
+    border-radius: 0 5px 0 0;
+}
+&:first-child::after {
+    border-radius: 5px 0 0 0;
+}
+.user {
+    text-decoration: none;
+    color: #666;
+    display: inline-block;
+    padding:20px 10px;
+    transition: all 0.5s;
+    background:#fff;
+    min-width:180px;
+    border-radius:6px;
+img {
+    margin:0 auto;
+    max-width:60px;
+    max-width:60px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    box-shadow:0 0 0 5px #aaa;
+}
+.name {
+    font-size:16px;
+    margin:15px 0 0;
+    font-weight:300;
+}
+.role {
+    font-weight:600;
+    margin-bottom:10px;
+    margin-top:5px;
+}
+.manager {
+    font-size:12px;
+color:#b21e04;
+}
+}
+}
+}
+/* 조직도 끝부분 */

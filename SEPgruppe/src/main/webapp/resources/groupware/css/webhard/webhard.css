@@ -1,0 +1,82 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 27.     	KMJ            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+.table thead th {
+	color: white;
+	background-color: black;
+}
+
+.webhardContainer {
+	padding: 40px;
+}
+
+.menu-container {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 5px;
+    width: 100px; /* 메뉴 너비 조정 */
+}
+
+.menu-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-container ul li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.menu-container ul li:hover {
+    background-color: #f0f0f0;
+}
+
+.nav-trigger {
+	cursor: pointer;
+}
+
+
+
+.view-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+button#toggleView {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.list-view .file-item {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.grid-view .file-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}

@@ -1,0 +1,129 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 8.     	JYS            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+
+.tree-container {
+    width: 100%;
+    height: 600px; /* 높이 고정 */
+border: 1px solid #ccc; /* 테두리 추가 */
+padding: 10px;
+overflow: hidden; /* 부모 요소에서는 스크롤 안 생기게 */
+}
+
+#tree {
+    width: 100%;
+    height: 100%; /* 부모 높이를 따라감 */
+overflow: auto; /* 내용이 많아지면 스크롤 생성 */
+}
+
+#templateDetails{
+	border: double gray 2px !important;
+	background: white;
+	width: 100%;
+	min-height: 300px;
+    height: auto; /* 부모 높이를 따라감 */
+	overflow: auto; /* 내용이 많아지면 스크롤 생성 */
+}
+
+#apprLineDiv{
+	background:white;
+	width: 100%;
+    height: 100%; /* 부모 높이를 따라감 */
+overflow: auto; /* 내용이 많아지면 스크롤 생성 */
+ }
+ 
+#depDropArea { 
+ 	width: 300px;
+   	height: 100px;
+   	border: 2px dashed #aaa;
+   	text-align: center;
+   	margin-top: 20px;
+   	background-color: #f9f9f9;
+ } 
+ 
+ #aprvlLineDiv {
+    display: flex;
+    gap: 20px; /* 테이블 사이 간격 */
+	justify-content: flex-end; /* 오른쪽 정렬 */
+}
+
+#aprvlLineDiv table,
+ #aprvlDocInfoTable{
+	table-layout: auto;   /* 내용에 따라 너비 자동 조절 */
+	width: auto;          /* 테이블 자체 너비도 내용에 따라 설정 */
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+/* 신청/승인 칸 (첫 번째 열) */
+#aprvlLineDiv th:first-child,
+#aprvlDocInfoTable th:first-child
+{
+	font-weight: bold;         /* 글자 진하게 (선택 사항) */
+   	width: 30%; /* 원하는 비율로 조절 가능 */
+    background-color:#e0e0e0; /* 연한 회색 */
+}
+
+#aprvlDocInfoTable td:last-child {
+    width: 70%;
+  }
+
+/* 나머지 셀 공통 스타일 */
+#aprvlLineDiv th, 
+#aprvlLineDiv td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+    width: 100px;
+    white-space: nowrap; /* 줄바꿈 없이 한 줄로 표시 */
+}
+ 
+#aprvlDocInfoDiv {
+    float: left;
+    margin-right: 20px; /* 두 테이블 간 여백 */
+  }
+
+#aprvlDocInfoTable tr, 
+#aprvlDocInfoTable td {
+	border: 1px solid black;	
+}
+
+
+ #aprvlLineDiv {
+   float: right;
+ }
+
+.clearfix td{
+	width : 30%
+}
+ 
+#docFrmNameTr{
+	text-align: center;
+}
+
+#docFrmNameTd{
+  	font-size: 30px; 
+  	font-weight: 2000;
+  	text-align: center;
+}
+
+ #apprResToast {
+    position: fixed;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1060; /* 모달보다 낮고, 일반 요소보다는 높게 */
+    background-color: rgba(0, 0, 0, 0.85); /* 어두운 배경 */
+    color: #fff; /* 흰색 글자 */
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+  }

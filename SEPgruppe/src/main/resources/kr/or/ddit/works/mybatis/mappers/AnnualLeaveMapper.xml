@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.AnnualLeaveMapper">
+<resultMap id="annualMap" type="AnnualLeaveVO" autoMapping="true" />
+
+<select id="selectAnnual" resultMap="annualMap">
+	SELECT
+		annual_leave_no
+		, emp_id
+		, total_leave
+		, used_leave
+		, remaining_leave
+		, leave_year
+		, created_date
+		, updated_date
+	FROM annual_leave
+	WHERE emp_id = #{empId}
+</select>
+
+<select id="selectAnnualOption" resultType="AnnualVO">
+	SELECT
+	    leave_type_cd
+	  , leave_type
+	FROM
+	    annual
+</select>
+
+<!-- 결재 완료 시 연차 사용 반영 -->
+<update id="updateUsedAnnualLeave" parameterType="map">
+    UPDATE annual_leave
+    SET 
+        used_leave = used_leave + #{usedLeave},
+        remaining_leave = total_leave - (used_leave + #{usedLeave})
+    WHERE emp_id = #{empId}
+</update>
+
+<!-- 결재 반려 시 사용 연차 롤백 -->
+<update id="rollbackUsedAnnualLeave" parameterType="map">
+    UPDATE annual_leave
+    SET 
+        used_leave = used_leave - #{usedLeave},
+        remaining_leave = remaining_leave + #{usedLeave}
+    WHERE emp_id = #{empId}
+</update>
+
+<!-- 연차 사용내역 조회 (결재 완료된 연차신청서) -->
+<select id="selectApprovedAnnualDocs" parameterType="string" resultType="AprvlDocVO">
+    SELECT  
+        d.aprvl_doc_no,
+        d.aprvl_doc_title,
+        d.aprvl_doc_contents,
+        d.submit_date,
+        df.doc_frm_name,
+        drafter.emp_nm AS drafterName,
+        ds.status_name,
+        d.aprvl_doc_status
+    FROM APRVL_DOC d
+    JOIN DOC_FORM df ON d.doc_frm_no = df.doc_frm_no
+    JOIN APRVL_DOC_STATUS ds ON d.aprvl_doc_status = ds.status_cd
+    JOIN (
+        SELECT l2.aprvl_doc_no, e2.emp_id, e2.emp_nm
+        FROM APPROVAL_LINE l2
+        JOIN EMPLOYEE e2 ON l2.emp_id = e2.emp_id
+        WHERE l2.aprvl_turn = 0
+    ) drafter ON drafter.aprvl_doc_no = d.aprvl_doc_no
+    WHERE drafter.emp_id = #{empId}
+      AND d.aprvl_doc_status = 'APPROVED'
+      AND df.doc_frm_name = '연차 신청서'
+    ORDER BY d.submit_date DESC
+</select>
+
+<!-- 연차 생성내역 조회 (결재 진행 중인 연차신청서) -->
+<select id="selectPendingAnnualDocs" parameterType="string" resultType="AprvlDocVO">
+    SELECT  
+        d.aprvl_doc_no,
+        d.aprvl_doc_title,
+        d.aprvl_doc_contents,
+        d.submit_date,
+        df.doc_frm_name,
+        drafter.emp_nm AS drafterName,
+        ds.status_name,
+        d.aprvl_doc_status
+    FROM APRVL_DOC d
+    JOIN APPROVAL_LINE l ON d.aprvl_doc_no = l.aprvl_doc_no
+    JOIN DOC_FORM df ON d.doc_frm_no = df.doc_frm_no
+    JOIN APRVL_DOC_STATUS ds ON d.aprvl_doc_status = ds.status_cd
+    JOIN EMPLOYEE drafter ON drafter.emp_id = l.emp_id AND l.aprvl_turn = 0
+     WHERE drafter.emp_id = #{empId}
+      AND d.aprvl_doc_status IN ('IN_PROGRESS','SUBMITTED')  <!-- Draft, Waiting -->
+      AND df.doc_frm_name = '연차 신청서'
+    ORDER BY d.submit_date DESC
+</select>
+
+</mapper>

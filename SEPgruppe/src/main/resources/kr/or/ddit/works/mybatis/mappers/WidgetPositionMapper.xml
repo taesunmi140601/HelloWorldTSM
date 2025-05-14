@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="kr.or.ddit.works.mybatis.mappers.WidgetPositionMapper">
+	
+	
+    <delete id="deleteByEmpId" parameterType="string">
+        DELETE FROM widget_position WHERE emp_id = #{empId}
+    </delete>
+
+    <insert id="insertWidgetPosition" parameterType="WidgetPositionVO">
+        INSERT INTO widget_position (emp_id, widget_id, position_no, column_name)
+        VALUES (#{empId}, #{widgetId}, #{positionNo}, #{columnName})
+    </insert>
+
+    <select id="selectPositionsByEmpId" parameterType="string" resultType="WidgetPositionVO">
+        SELECT emp_id, widget_id, position_no, column_name
+        FROM widget_position
+        WHERE emp_id = #{empId}
+        ORDER BY column_name, position_no
+    </select>
+	
+</mapper>

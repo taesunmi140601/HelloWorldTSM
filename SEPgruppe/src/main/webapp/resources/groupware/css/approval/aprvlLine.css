@@ -1,0 +1,156 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 3. 17.     	KMJ            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.biggestContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+.top-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #4B5651;
+    padding: 10px 20px;
+    border-radius: 40px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto; /* 중앙 정렬 */
+}
+
+/* 네비게이션 내부 정렬 */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* 왼쪽 메뉴 */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* 우측 영역 스타일 */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.lang-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 우측 메뉴 */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* 기부 버튼 */
+.donate-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 구분선 */
+.divider {
+    height: 20px;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+
+.aprvl-container {
+    flex: 1;
+    max-width: 20%;
+}
+
+.biggestContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
+.aprvl-main {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* 왼쪽 근태관리 */
+.aprvl-left {
+    flex: 1; /* 왼쪽이 차지할 공간 */
+    max-width: 200px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    margin-right: 20px;
+
+}
+
+/* 오른쪽 결재 문서 컨테이너 */
+.aprvl-right {
+    flex: 2;
+    display: flex;
+    flex-direction: column; /* 세로 정렬 유지 */
+    gap: 20px;
+}
+
+
+.col-md-4 {
+    order: -1; /* 첫 번째 요소로 배치 */
+/*     width: 100%; */
+/*     max-width: 100%; 컨테이너 크기에 맞춤 */
+}

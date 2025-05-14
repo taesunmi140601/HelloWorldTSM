@@ -1,0 +1,48 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 5.     	SJH            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+/* 버튼 좌우 배치용 Flex 스타일 */
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 기존 버튼 스타일은 그대로 유지 */
+.btn-primary {
+    background-color: #4a7cf3;
+    color: white;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3a6ae2;
+}
+
+.btn-danger {
+    background-color: #f15b5b;
+    color: white;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    transition: 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #d94c4c;
+}

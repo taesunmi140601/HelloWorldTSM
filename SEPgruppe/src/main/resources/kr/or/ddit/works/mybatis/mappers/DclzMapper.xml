@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.DclzMapper">
+<resultMap id="dclzStatusMap" type="DclzStatusVO" autoMapping="true" />
+
+<select id="selectDclzStatus" resultMap="dclzStatusMap">
+	SELECT 
+            dclz_no, 
+            emp_id, 
+            TO_CHAR(attend_date, 'HH24:MI:SS') AS attendDate, 
+            TO_CHAR(lvffc_date, 'HH24:MI:SS') AS lvffcDate, 
+            TO_CHAR(working_day, 'YYYY-MM-DD') AS workingDay, 
+            extnd_working_hours,
+            work_status,
+            working_time
+        FROM dclz_status
+        WHERE emp_id = #{empId}
+        ORDER BY working_day
+</select>
+
+
+<select id="selectTodayDclzStatus" resultMap="dclzStatusMap">
+        SELECT 
+            emp_id, 
+            TO_CHAR(attend_date, 'HH24:MI:SS') AS attendDate, 
+            TO_CHAR(lvffc_date, 'HH24:MI:SS') AS lvffcDate,
+            working_time
+        FROM dclz_status
+        WHERE emp_id = #{empId}
+        AND working_day = TRUNC(SYSDATE)
+    </select>
+    
+    <select id="selectWeeklyTotalHours" resultType="String">
+	    SELECT NVL(SUM(
+	        NVL(TO_NUMBER(REGEXP_SUBSTR(working_time, '^[0-9]+')), 0) 
+	        + NVL(TO_NUMBER(REGEXP_SUBSTR(working_time, '[0-9]+$', 1, 1)), 0) / 60
+    	), 0) AS workingTime
+	    FROM dclz_status
+	    WHERE emp_id = #{empId}
+	    AND working_day >= TRUNC(SYSDATE, 'IW')
+	</select>
+
+ <!-- 출근 체크 (시간만 저장) -->
+    <insert id="insertCheckIn">
+        INSERT INTO dclz_status (dclz_no, emp_id, attend_date, working_day, work_status, working_time)
+        VALUES (SEQ_DCLZ.NEXTVAL, #{empId}, SYSDATE, TRUNC(SYSDATE), '출근', '0시간 00분')
+    </insert>
+
+    <!-- 퇴근 체크 (시간만 저장) -->
+    <update id="updateCheckOut">
+        UPDATE dclz_status
+        SET 
+        	lvffc_date = SYSDATE, 
+        	work_status = '퇴근',
+        	working_time = 
+			 	TO_CHAR(TRUNC((SYSDATE - attend_date) * 24), 'FM999999') || '시간 ' ||
+            	TO_CHAR(MOD((SYSDATE - attend_date) * 1440, 60), 'FM00') || '분'
+        WHERE emp_id = #{empId} 
+        AND working_day = TRUNC(SYSDATE)
+    </update>
+</mapper>

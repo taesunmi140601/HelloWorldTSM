@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.CommCodeMapper">
+
+	<select id="selectApprLineType" resultType="CommCodeVO">
+		SELECT
+		    comm_code_no
+		  , parent_comm_code_no
+		  , comm_code_name
+		  , comm_code_desc
+		  , comm_code_created_date
+		  , comm_code_update_date
+		  , comm_code_yn
+		FROM
+		    comm_code
+		WHERE parent_comm_code_no = (SELECT comm_code_no
+		                             FROM comm_code
+		                             WHERE comm_code_name='결재선타입')
+	</select>
+</mapper>

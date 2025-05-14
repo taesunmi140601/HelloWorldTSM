@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.MeetingRoomMapper">
+
+		<!-- 고객사 관리자 모든 회의실 목록 조회 -->
+		<select id="selectListAllRoom" resultType="kr.or.ddit.works.reservation.vo.MeetingRoomVO">
+		    SELECT 
+		        ROOM_NO,
+		        ROOM_NM,
+		        ROOM_LOCATION,
+		        ROOM_AVAILABILITY,
+		        ROOM_CAPACITY
+		    FROM MEETING_ROOM
+		    ORDER BY ROOM_NO
+		</select>
+
+   <!-- 고객사 관리자 회의실 상세 조회 -->
+	<select id="selectRoomDetail" parameterType="long" resultType="kr.or.ddit.works.reservation.vo.MeetingRoomVO">
+	    SELECT 
+	        ROOM_NO,
+	        ROOM_NM,
+	        ROOM_LOCATION,
+	        ROOM_AVAILABILITY,
+	        ROOM_CAPACITY
+	    FROM MEETING_ROOM
+	    WHERE ROOM_NO = #{roomNo}
+	</select>
+
+    <!--고객사 관리자 회의실 등록 -->
+	<insert id="insertRoom" parameterType="kr.or.ddit.works.reservation.vo.MeetingRoomVO">
+	    INSERT INTO MEETING_ROOM (ROOM_NM, ROOM_LOCATION, ROOM_AVAILABILITY, ROOM_CAPACITY)
+	    VALUES (#{roomNm}, #{roomLocation}, #{roomAvailability}, #{roomCapacity})
+	</insert>
+
+    <!-- 고객사 관리자 회의실 수정 -->
+	<update id="updateRoom" parameterType="kr.or.ddit.works.reservation.vo.MeetingRoomVO">
+	    UPDATE MEETING_ROOM
+	    SET 
+	        ROOM_NM = #{roomNm},
+	        ROOM_LOCATION = #{roomLocation},
+	        ROOM_AVAILABILITY = #{roomAvailability},
+	        ROOM_CAPACITY = #{roomCapacity}
+	    WHERE 
+	        ROOM_NO = #{roomNo}
+	</update>
+
+    <!-- 고객사 관리자 회의실 삭제 -->
+    <delete id="deleteRoom" parameterType="long">
+        DELETE FROM MEETING_ROOM
+        WHERE 
+            ROOM_NO = #{roomNo}
+    </delete>
+    
+</mapper>

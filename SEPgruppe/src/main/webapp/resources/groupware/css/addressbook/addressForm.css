@@ -1,0 +1,197 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 9.     	SJH            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+
+/* 주소록 등록 폼 스타일 */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Noto Sans KR', 'Segoe UI', sans-serif;
+    color: #212529;
+}
+
+.addressContainer {
+	padding: 40px;
+}
+
+.address-form-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+    border-radius: 20%;
+}
+
+.address-form-container {
+    background-color: #fff;
+    width: 100%;
+    max-width: 860px;
+    padding: 50px 60px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0d6efd;
+    margin-bottom: 30px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+    outline: none;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.d-flex {
+    margin-top: 30px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 10px 26px;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+.btn-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.image-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: black;
+    width: 140px;  /* 기존보다 넓게 */
+    font-size: 50px;
+    color: white;
+    border-radius: 3%;
+    margin-right: 20px;
+}
+
+/* .form-column { */
+/* 	flex: 1; */
+/* } */
+
+/* .form-label { */
+/*     display: inline-block; */
+/*     width: 150px;  원하는 너비로 조절 */
+/*     font-weight: 600; */
+/*     color: #495057; */
+/* } */
+
+
+/*          body { */
+/*             background-color: #f8f9fa; */
+/*             display: flex; */
+/*             align-items: center; */
+/*             min-height: 100vh; */
+/*             margin: 0; */
+/*         } */
+
+/*         .address-form-wrapper { */
+/*             width: 90%; */
+/*             max-width: 1500px; */
+/*             background-color: white; */
+/*             border-radius: 10px; */
+/*             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+/*             padding: 20px; */
+/*             display: flex; */
+            
+/*         } */
+
+/*         .image-column { */
+/*             flex: 1; */
+/*             display: flex; */
+/*             flex-direction: column; */
+/*             align-items: center; */
+/*             justify-content: center; */
+/*             padding: 20px; */
+/*         } */
+
+/*         .image-column img { */
+/*             max-width: 100%; */
+/*             height: auto; */
+/*             border-radius: 10px; */
+/*             margin-bottom: 20px; */
+/*         } */
+
+        .form-column {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .form-table {
+            width: 100%;
+        }
+
+        .form-table td {
+            padding: 15px; 
+            text-align: left;
+        }
+
+        .form-control, .form-select {
+            border: none; 
+            border-bottom: 1px solid #ced4da; 
+            border-radius: 0; 
+            padding: 5px 0; 
+            width: 100%;
+        }
+        
+/*         #adbkMemo { */
+/*             border-radius: 5px; */
+/*             background-color: white; */
+/*             border: 1px solid #ced4da;         */
+/*         } */
+        
+
+/*         .btn-primary { */
+/*             background: linear-gradient(to right, #2980b9, #6dd5fa); */
+/*             border: none; */
+/*             color: white; */
+/*             border-radius: 5px; */
+/*             padding: 10px 20px; */
+/*         } */
+
+/*         .btn-secondary { */
+/*             border: none; */
+/*             border-radius: 5px; */
+/*             padding: 10px 20px; */
+/*         } */

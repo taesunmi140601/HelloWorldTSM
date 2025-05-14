@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.works.mybatis.mappers.MailMapper">
+
+<select id="selectMailList" resultType="MailReceptionVO">
+	SELECT
+	    MAIL_RECP_NO
+	  , EMP_ID
+	  , MAIL_CATEGORY_NO
+	  , MAIL_ID
+	  , FROM_EMAIL
+	  , TO_EMAIL
+	  , CC_EMAIL
+	  , MAIL_SUBJECT
+	  , MAIL_BODY
+	  , FILE_GROUP_NO
+	  , MAIL_DATE
+	  , MAIL_FAV
+	FROM
+	    MAIL_RECEPTION
+	WHERE EMP_ID = #{empId}
+	ORDER BY MAIL_DATE DESC
+</select>	
+
+<select id="selectSendMailList">
+	SELECT
+	    MAIL_SENT_NO
+	  , EMP_ID
+	  , MAIL_ID
+	  , TO_EMAIL
+	  , CC_EMAIL
+	  , BCC_EMAIL
+	  , MAIL_SUBJECT
+	  , SENT_COTENT_LOG
+	  , FILE_GROUP_NO
+	  , MAIL_DATE
+	FROM
+	    MAIL_SENT_LOG
+	WHERE EMP_ID = #{empId}
+	ORDER BY MAIL_DATE DESC
+</select>
+
+<select id="selectFavoriteMailIds" parameterType="string" resultType="string">
+    SELECT MAIL_ID
+    FROM MAIL_RECEPTION
+    WHERE EMP_ID = #{empId}
+      AND MAIL_FAV = 1
+</select>
+
+
+<insert id="insertFavorite" parameterType="map">
+    INSERT INTO MAIL_RECEPTION (
+    	MAIL_RECP_NO
+    	, EMP_ID
+    	, MAIL_ID
+    	) VALUES (
+    	mail_seq.NEXTVAL   	
+    	, #{empId}
+    	, #{mailId}
+    )
+</insert>
+
+<update id="updateFavorite" parameterType="map">
+    UPDATE 
+    	MAIL_RECEPTION
+    SET 
+    	MAIL_FAV = #{mailFav}
+    WHERE MAIL_RECP_NO = #{mailRecpNo}
+</update>
+
+
+<delete id="deleteFavorite" parameterType="map">
+    DELETE 
+    FROM MAIL_RECEPTION
+    WHERE EMP_ID = #{empId} 
+    AND MAIL_ID = #{mailId}
+</delete>
+
+<select id="selectFavoriteMails" parameterType="string" resultType="string">
+    SELECT 
+    	MAIL_ID
+    FROM MAIL_RECEPTION
+    WHERE MAIL_ID = #{mailId}
+</select>
+
+<select id="selectFavoriteMailList" parameterType="string" resultType="MailReceptionVO">
+    SELECT *
+    FROM MAIL_RECEPTION
+    WHERE EMP_ID = #{empId}
+      AND MAIL_FAV = 1
+    ORDER BY MAIL_RECP_NO DESC
+</select>
+
+<insert id="insertMailList" parameterType="MailReceptionVO">
+	<selectKey resultType="Long" keyProperty="mailRecpNo" order="BEFORE">
+        SELECT MAIL_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+    INSERT INTO MAIL_RECEPTION (
+        MAIL_RECP_NO,
+        EMP_ID,
+        MAIL_CATEGORY_NO,
+        MAIL_ID,
+        FROM_EMAIL,
+        TO_EMAIL,
+        CC_EMAIL,
+        MAIL_SUBJECT,
+        MAIL_BODY,
+        FILE_GROUP_NO,
+        MAIL_DATE,
+        MAIL_FAV
+    ) VALUES (
+        #{mailRecpNo},
+        #{empId},
+        #{mailCategoryNo},
+        #{mailId},
+        #{fromEmail},
+        #{toEmail},
+        #{ccEmail},
+        #{mailSubject},
+        #{mailBody},
+        #{fileGroupNo},
+        #{mailDate, jdbcType=TIMESTAMP},
+        #{mailFav}
+    )
+</insert>
+
+<insert id="insertMailLog" parameterType="MailSentLogVO">
+    INSERT INTO MAIL_SENT_LOG (
+        MAIL_SENT_NO,
+        EMP_ID,
+        MAIL_ID,
+        TO_EMAIL,
+        CC_EMAIL,
+        BCC_EMAIL,
+        MAIL_SUBJECT,
+        SENT_COTENT_LOG,
+        FILE_GROUP_NO,
+        MAIL_DATE
+    ) VALUES (
+        MAIL_SENT_LOG_SEQ.NEXTVAL,
+        #{empId},
+        #{mailId},
+        #{toEmail},
+        #{ccEmail},
+        #{bccEmail},
+        #{mailSubject},
+        #{sentCotentLog},
+        #{fileGroupNo},
+        #{mailDate}
+    )
+</insert>
+
+
+<select id="selectTokenByUserId">
+	SELECT
+	    EMP_ID
+	  , EMAIL_ADD
+	  , ACCESS_TOKEN
+	  , REFRESH_TOKEN
+	  , AUTH_TYPE
+	  , TOKEN_EXPIRY
+	  , FIRST_LINKED_AT
+	  , TOKEN_LAST_UPDATE
+	FROM
+	    MAIL_USER_AUTHENTICATION
+	WHERE EMP_ID = #{empId}
+</select>
+
+<insert id="insertToken">
+	INSERT INTO MAIL_USER_AUTHENTICATION (
+	    EMP_ID
+	    , EMAIL_ADD
+	    , ACCESS_TOKEN
+	    , REFRESH_TOKEN
+	    , AUTH_TYPE
+	    , TOKEN_EXPIRY
+	    , FIRST_LINKED_AT
+	    , TOKEN_LAST_UPDATE
+	) VALUES (
+	    #{empId}
+	  , #{emailAdd}
+	  , #{accessToken}
+	  , #{refreshToken}
+	  , #{authType}
+	  , #{tokenExpiry}
+	  , #{firstLinkedAt}
+	  , #{tokenLastUpdate}
+	)
+</insert>
+
+<update id="updateToken">
+	UPDATE MAIL_USER_AUTHENTICATION
+	SET
+		EMAIL_ADD      	   = #{emailAdd},
+	    ACCESS_TOKEN       = #{accessToken},
+	    REFRESH_TOKEN      = #{refreshToken},
+	    AUTH_TYPE          = #{authType},
+	    TOKEN_EXPIRY 	   = #{tokenExpiry},
+	    TOKEN_LAST_UPDATE  = CURRENT_TIMESTAMP
+	WHERE
+	    EMP_ID = #{empId}
+</update>
+
+</mapper>

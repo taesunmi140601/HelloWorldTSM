@@ -1,0 +1,90 @@
+/** 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일      			수정자           수정내용
+ *  -----------   	-------------    ---------------------------
+ *  2025. 4. 12.     	JSW            최초 생성
+ *
+ * </pre>
+ */
+@charset "UTF-8";
+/* 위젯 전용 스타일 (근태관리 페이지와는 무관함) */
+.dclz-widget-container {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.dclz-widget {
+  width: 100%;
+  max-width: 320px; /* 위젯 최대 너비 제한 */
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.dclz-date {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+}
+
+.dclz-clock {
+  font-size: 28px;
+  font-weight: bold;
+  color: black;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.dclz-status .info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.dclz-status .info-label {
+  font-weight: 500;
+  color: #444;
+}
+
+.dclz-status .info-value {
+  font-weight: bold;
+  color: #222;
+}
+
+.dclz-buttons-wrap {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 60px !important;
+}
+
+.dclz-buttons {
+  display: flex;
+  justify-content: center;
+ 
+}
+
+button:disabled,
+button[disabled] {
+  border-color: #ccc !important;
+  color: #888 !important;
+  cursor: not-allowed;
+}
+
+button.btn {
+  border-radius: 20px !important; /* 둥근 모서리 */
+  padding: 6px 16px;
+  font-size: 14px;
+  width: -webkit-fill-available;
+}
+
+.status-btn {
+  width: 100%;
+}
