@@ -35,9 +35,10 @@
 
 - 📦 첨부파일 업로드 & 다운로드 공통 모듈 개발 [🔗 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/java/kr/or/ddit/works/attachFile)
 
-- 📦 채팅 기능 개발  
-<details>
-<summary>WebSocketConfig 설정</summary>
+- 📦 채팅 기능 개발
+  - 그룹웨어 내에서 실시간 소통을 위한 WebSocket 기반 채팅 시스템을 구현하였습니다.
+<details> 
+  <summary>WebSocketConfig 설정</summary>
 
 ```java
 package kr.or.ddit.spring.config;
