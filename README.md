@@ -35,9 +35,12 @@
 
 - 📦 첨부파일 업로드 & 다운로드 공통 모듈 개발 [🔗 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/tree/main/SEPgruppe/src/main/java/kr/or/ddit/works/attachFile)
 
-- 📦 채팅기능 개발
+<details>
+<summary>📦 채팅 기능 개발 (WebSocketConfig 설정)</summary>
 
+- [🔗 WebSocketConfig.java 바로가기](https://github.com/taesunmi140601/HelloWorldTSM/blob/main/SEPgruppe/src/main/java/kr/or/ddit/spring/config/WebSocketConfig.java)
 
+</details>
 
 
 
